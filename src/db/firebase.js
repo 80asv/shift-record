@@ -58,3 +58,11 @@ export async function updateUser(user){
 		
 	}
 }
+
+export async function getUserInfo(uid){
+	try {
+		const docRef = doc(db, 'users', uid);
+		const document = await getDoc(docRef);
+		return document.data();
+	} catch (error) {}
+}
