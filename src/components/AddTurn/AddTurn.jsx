@@ -1,23 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import HomeWrapper from '../HomeWrapper/HomeWrapper'
+import { v4 as uuidv4 } from 'uuid';
+import { insertNewTurn } from '../../db/firebase';
+
+const initialForm = {
+	placeToShift: '',
+	dateTurn: '',
+	admissionTime: '',
+	departureTime: '',
+}
 
 const AddTurn = () => {
-  return (
-    <HomeWrapper>
-        <h2>Agregar nuevo turno</h2>
-        <Link to='/dashboard'>Volver</Link>
-        <label htmlFor="lugar">Lugar del turno</label>
-        <input type="text" name="lugar" id="lugar" />
-        <label htmlFor="dia_inicio">Dia de Inicio</label>
-        <input type="date" name="dia_inicio" id="dia_inicio" />
-        <label htmlFor="hora_entrada">Hora de ingreso</label>
-        <input type="datetime" name="hora_entrada" id="hora_entrada" />
-        <label htmlFor="hora_salida">Hora de salida</label>
-        <input type="datetime" name="hora_salida" id="hora_salida" />
-        <input type="submit" value="Agregar" />
-    </HomeWrapper>
-  )
+
+	const { user } = useAuth();
+	const [turn, setTurn] = useState(initialForm);
+	const [turnList, setTurnList] = useState([]);
+	
+	const handleChange = ({ target: { name, value } }) => {
+		setTurn({ ...turn, [name]: value, uid: user.uid, id: uuidv4() })
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		addTurn();
+	}
+
+	const addTurn = () => {
+		const res = insertNewTurn(turn);
+		setTurn({ ...turn, docList: res.id });
+		setTurnList([...turnList, turn]);
+		setTurn(initialForm);
+	}
+
+	return (
+		<HomeWrapper>
+			<h2>Agregar nuevo turno</h2>
+			<form onSubmit={handleSubmit}>
+				<Link to='/dashboard'>Volver</Link>
+				<label htmlFor="placeToShift">Lugar del turno</label>
+				<input type="text" name="placeToShift" id="placeToShift" onChange={handleChange}/>
+				<label htmlFor="dateTurn">Dia de Inicio</label>
+				<input type="date" name="dateTurn" id="dateTurn" onChange={handleChange}/>
+				<label htmlFor="admissionTime">Hora de ingreso</label>
+				<input type="datetime" name="admissionTime" id="admissionTime" onChange={handleChange}/>
+				<label htmlFor="departureTime">Hora de salida</label>
+				<input type="datetime" name="departureTime" id="departureTime" onChange={handleChange}/>
+				<input type="submit" value="Agregar" />
+			</form>
+		</HomeWrapper>
+	)
 }
 
 export default AddTurn

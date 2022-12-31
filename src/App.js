@@ -2,8 +2,6 @@ import { Route, Routes } from 'react-router';
 import ChooseUsername from './components/ChooseUsername/ChooseUsername';
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
-import Register from './components/Register/Register';
-import SingOut from './components/SingOut/SingOut';
 import './App.css';
 import Home from './components/Home/Home';
 import { AuthProvider } from './context/AuthContext';
@@ -25,7 +23,6 @@ function App() {
             </ProtectedRoute>
           }/>
           <Route path="/login" element={<Login/>}/>{/* inicio de sesion */}
-          <Route path="/registrar" element={<Register/>}/> {/* registrar una cita */}
           <Route path="dashboard/agregar-turno" element={
             <ProtectedRoute>
               <AddTurn/>

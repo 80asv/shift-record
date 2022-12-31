@@ -66,3 +66,13 @@ export async function getUserInfo(uid){
 		return document.data();
 	} catch (error) {}
 }
+
+export async function insertNewTurn(link){
+	try {
+		const docRef = collection(db, 'turns');
+		const res = await addDoc(docRef, link);
+		return res;
+	} catch (error) {
+		console.log(error)
+	}
+}

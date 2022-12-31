@@ -11,7 +11,7 @@ const Dashboard = () => {
     <HomeWrapper>
         <h1>DASHBOARD de {user.displayName}</h1>
         <Link to='/dashboard/agregar-turno'>Agregar nuevo turno</Link>
-        <p>Aqui iran los turnos</p>
+        <h3>Aqui iran los turnos</h3>
     </HomeWrapper>
   )
 }
