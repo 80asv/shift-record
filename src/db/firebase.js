@@ -67,12 +67,33 @@ export async function getUserInfo(uid){
 	} catch (error) {}
 }
 
-export async function insertNewTurn(link){
+export async function insertNewTurn(turn){
 	try {
 		const docRef = collection(db, 'turns');
-		const res = await addDoc(docRef, link);
+		const res = await addDoc(docRef, turn);
 		return res;
 	} catch (error) {
 		console.log(error)
 	}
+}
+
+export async function getTurns(uid){
+	try {
+		const turns = []
+		const collectionRef = collection(db, 'turns');
+		const q = query(collectionRef, where('uid', '==', uid));
+
+		const querySnapshot = await getDocs(q);
+
+		querySnapshot.forEach(doc => {
+			const turn = {...doc.data() };
+			turn.docId = doc.id;
+			turns.push(turn);
+		});
+
+		return turns;
+
+	} catch (error) {
+		console.log(error);
+	}	
 }
