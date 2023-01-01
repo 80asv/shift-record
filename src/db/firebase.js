@@ -97,3 +97,23 @@ export async function getTurns(uid){
 		console.log(error);
 	}	
 }
+
+export async function updateTurn(docId, turn){
+	try {
+		const docRef = doc(db, 'turns', docId);
+		const res = await setDoc(docRef, turn);
+		return res
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export async function deleteTurn(docId){
+	try {
+		const docRef = doc(db, 'turns', docId);
+		const res = deleteDoc(docRef);
+		return res;
+	} catch (error) {
+		console.log(error)
+	}
+}

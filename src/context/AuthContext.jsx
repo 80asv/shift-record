@@ -40,7 +40,6 @@ export function AuthProvider({ children }){
             let isRegistered = await userExists(currentUser.uid);
             if(isRegistered){
                 navigate('/dashboard');
-                console.log('entro a dash');
             } else {
                 await registerNewUser({
                     uid: currentUser.uid,
@@ -49,8 +48,6 @@ export function AuthProvider({ children }){
                     processCompleted: false
                 })
                 setUserInfo(await getUserInfo(currentUser.uid));
-                console.log('entro a choose');
-                
                 navigate('/choose-username');
             }
         });

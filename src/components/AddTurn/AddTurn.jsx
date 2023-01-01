@@ -44,9 +44,9 @@ const AddTurn = () => {
 				<label htmlFor="dateTurn">Dia de Inicio</label>
 				<input type="date" name="dateTurn" id="dateTurn" onChange={handleChange}/>
 				<label htmlFor="admissionTime">Hora de ingreso</label>
-				<input type="datetime" name="admissionTime" id="admissionTime" onChange={handleChange}/>
+				<input type="time" name="admissionTime" id="admissionTime" onChange={handleChange}/>
 				<label htmlFor="departureTime">Hora de salida</label>
-				<input type="datetime" name="departureTime" id="departureTime" onChange={handleChange}/>
+				<input type="time" name="departureTime" id="departureTime" onChange={handleChange}/>
 				<input type="submit" value="Agregar" />
 			</form>
 		</HomeWrapper>
