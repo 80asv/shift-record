@@ -95,10 +95,10 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                     </>
                 ) : (
                     <>
-                        <h2>{cPlace}</h2>
-                        <p>{cDate}</p>
-                        <p>{moment(cAdmissionTime, 'HH:mm:ss').format('h:mm A')}</p>
-                        <p>{moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
+                        <h2>Lugar del Turno: {cPlace}</h2>
+                        <p>Fecha: {cDate}</p>
+                        <p>Hora ingreso: {moment(cAdmissionTime, 'HH:mm:ss').format('h:mm A')}</p>
+                        <p>Hora salida: {moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
                         <p>Creado el {timeStamp} {calculateTimeTravel(timeStamp)}</p>
                         <div>
                             <button onClick={handleEditTurn}>Editar</button>

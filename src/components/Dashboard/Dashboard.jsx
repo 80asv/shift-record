@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 import { deleteTurn, getTurns, updateTurn } from '../../db/firebase'
 import HomeWrapper from '../HomeWrapper/HomeWrapper'
 import Loader from '../Loader/Loader'
+import SelectList from '../SelectList/SelectList'
 import Turn from '../Turn/Turn'
 
 /**
@@ -18,15 +19,49 @@ const Dashboard = () => {
 	const { user } = useAuth();
 	const [turns, setTurns] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [isFilteredByPlace, setIsFilteredByPlace] = useState(false);
+	const [isFiltereByDateTurn, setIsFiltereByDateTurn] = useState(false);
+
+	const [place, setPlace] = useState("");
+	const [date, setDate] = useState('');
+
+	const [listPlaces, setListPlaces] = useState([]);
+	const [listDates, setListDates] = useState([]);
 
 	useEffect(() => {
 		const getTurnsList = async () => {
 			const res = await getTurns(user.uid);
-			setTurns(res);
+
+			/* Listas */
+			setListPlaces(() => { // listar lugares
+				const places = res.map((turn) => turn.placeToShift);
+				return [...new Set(places)]; // eliminar los repetidos
+			})
+
+			setListDates(() => { // listar fechas
+				const dates = res.map(turn => turn.dateTurn);
+				return [...new Set(dates)];
+			})
+
+			/* Filtros */
+			if(isFilteredByPlace){ // filtro por lugares
+				setTurns(() => {
+					const placesFiltered = res.filter((turn) => turn.placeToShift === place);
+					return placesFiltered;
+				});
+			} else if(isFiltereByDateTurn){ // filtro por fechas
+				setTurns(() => {
+					const datesFiltered = res.filter((turn) => turn.dateTurn === date);
+					return datesFiltered
+				});
+			} else {
+				setTurns(res); // sin filtros
+			}
+			
 			setLoading(false);
 		}
 		getTurnsList();
-	}, []);
+	}, [turns]);
 
 	const handleDeleteTurn = async (docId) => {
 		await deleteTurn(docId);
@@ -40,12 +75,32 @@ const Dashboard = () => {
 		await updateTurn(docId, turn);
 	}
 
+	const handleChangeFilterByPlace = (e) => {
+		setPlace(e.target.value);
+		if(e.target.value !== ""){
+			setIsFilteredByPlace(true);
+		} else {
+			setIsFilteredByPlace(false);
+		}
+	}
+
+	const handleChangeFilterByDate = (e) => {
+		setDate(e.target.value);
+		if(e.target.value !== ''){
+			setIsFiltereByDateTurn(true)
+		} else {
+			setIsFiltereByDateTurn(false)
+		}
+	}
 
   	return (
 		<HomeWrapper>
 			<h1>DASHBOARD de {user.displayName}</h1>
 			<Link to='/dashboard/agregar-turno'>Agregar nuevo turno</Link>
-			<h3>Aqui iran los turnos</h3>
+			<div className='filters'>
+				<SelectList id='placeToShift' title='Lugar' handleChange={handleChangeFilterByPlace} data={listPlaces}/>
+				<SelectList id='dateTurn' title='fecha del turno' handleChange={handleChangeFilterByDate} data={listDates}/>
+			</div>
 			{loading && <Loader/>}
 			{
 				turns.map((turn) => <Turn
