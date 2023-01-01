@@ -1,13 +1,9 @@
-import { Navigate, useNavigate } from "react-router";
-import { AuthContext, useAuth } from "../../context/AuthContext";
-import { registerNewUser, userExists } from "../../db/firebase";
+import { Navigate } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
-	
-	const navigate = useNavigate();
 	// context
 	const { logInWithGoogle, user } = useAuth();
-
 	if(user) return <Navigate to='/'/>
 
 	const handleGoogleLogIn = async () => {

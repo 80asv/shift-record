@@ -22,16 +22,16 @@ export function AuthProvider({ children }){
     // state
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    //const [isRegistered, setIsRegistered] = useState(false);
 	const [userInfo, setUserInfo] = useState({});
     const navigate = useNavigate();
 
-
     const signUp = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+    const logout = () => signOut(auth);
 
-    const logout = () => {
-        signOut(auth);
-    };
+    const logInWithGoogle = async () => {
+        const googleProvider = new GoogleAuthProvider();
+        return await signInWithPopup(auth, googleProvider)
+    }
 
     useEffect(() => { // detectar si ya esta autenticado o no
         const onSubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -53,15 +53,12 @@ export function AuthProvider({ children }){
                 }
             } catch (error) { console.error(error) }
         });
-        return () => onSubscribe()
+        return () => onSubscribe();
  	}, []);
 
-
-	const logInWithGoogle = async () => {
-        const googleProvider = new GoogleAuthProvider();
-        return await signInWithPopup(auth, googleProvider)
-    }
-    return <AuthContext.Provider value={ { user, signUp, logInWithGoogle, logout, loading, userInfo  } }>
-        {children}
-    </AuthContext.Provider>
+    return(
+        <AuthContext.Provider value={ { user, signUp, logInWithGoogle, logout, loading, userInfo  } }>
+            {children}
+        </AuthContext.Provider>  
+    ) 
 }
