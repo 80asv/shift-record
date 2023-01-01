@@ -5,6 +5,13 @@ import { deleteTurn, getTurns, updateTurn } from '../../db/firebase'
 import HomeWrapper from '../HomeWrapper/HomeWrapper'
 import Turn from '../Turn/Turn'
 
+/**
+ * TODO: Sistema de filtro
+ * TODO: Clipboard
+ * TODO: Componente loading
+ * TODO: Formateo de horas
+ */
+
 const Dashboard = () => {
 	const { user } = useAuth();
 	const [turns, setTurns] = useState([]);

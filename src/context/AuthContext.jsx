@@ -35,21 +35,23 @@ export function AuthProvider({ children }){
 
     useEffect(() => { // detectar si ya esta autenticado o no
         const onSubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            setUser(currentUser);
-            setLoading(false);
-            let isRegistered = await userExists(currentUser.uid);
-            if(isRegistered){
-                navigate('/dashboard');
-            } else {
-                await registerNewUser({
-                    uid: currentUser.uid,
-                    displayName: currentUser.displayName,
-                    username: '',
-                    processCompleted: false
-                })
-                setUserInfo(await getUserInfo(currentUser.uid));
-                navigate('/choose-username');
-            }
+            try {
+                setUser(currentUser);
+                setLoading(false);
+                let isRegistered = await userExists(currentUser.uid);
+                if(isRegistered){
+                    navigate('/dashboard');
+                } else {
+                    await registerNewUser({
+                        uid: currentUser.uid,
+                        displayName: currentUser.displayName,
+                        username: '',
+                        processCompleted: false
+                    })
+                    setUserInfo(await getUserInfo(currentUser.uid));
+                    navigate('/choose-username');
+                }
+            } catch (error) { console.error(error) }
         });
         return () => onSubscribe()
  	}, []);

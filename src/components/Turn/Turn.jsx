@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { toast, Toaster } from 'react-hot-toast';
 
 const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId }) => {
 
@@ -7,6 +9,8 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     const [cDate, setCDate] = useState(dateTurn);
     const [cAdmissionTime, setCAdmissionTime] = useState(admissionTime);
     const [cDepartureTime, setCDepartureTime] = useState(departureTime);
+
+    const copyToClipboardValues = `Lugar Turno: ${cPlace}\nFecha: ${cDate}\nHora Ingreso: ${cAdmissionTime}\nHora Salida: ${cDepartureTime}`
 
     const turnRef = useRef(null);
 
@@ -35,7 +39,26 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
         onEdit(docId, turnEdited);
     }
 
+    const handleConfirmDelete = () => {
+        toast((t) => (
+            <div>
+                <h2>¿Estas Seguro de Eliminar este turno?</h2>
+                <div>
+                    <button onClick={() => {
+                        handleDelete();
+						toast.dismiss(t.id);
+					}}>Eliminar</button>
+                    <button onClick={() => toast.dismiss(t.id)}>Cancelar</button>
+                </div>
+            </div>
+        ));
+    }
+
     const handleDelete = () => onDelete(docId);
+
+    const handleCopyToClipBoard = () => {
+        toast.success('¡Copiado al portapapeles!');
+    }
 
     return (
         <div id={id}>
@@ -68,13 +91,15 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                         <p>{cDepartureTime}</p>
                         <div>
                             <button onClick={handleEditTurn}>Editar</button>
-                            <button onClick={handleDelete}>Eliminar</button>
-                            <button>copiar al portapapeles</button>
+                            <button onClick={handleConfirmDelete}>Eliminar</button>
+                            <CopyToClipboard text={copyToClipboardValues}>
+                                <button onClick={handleCopyToClipBoard}>copiar al portapapeles</button>
+                            </CopyToClipboard>
                         </div>
                     </>
                 )
             }
-            
+            <Toaster/>
         </div>
     )
 }
