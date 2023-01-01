@@ -50,7 +50,8 @@ const AddTurn = () => {
 	}
 
 	const addTurn = () => {
-		const res = insertNewTurn(turn);
+		let today = new Date().toLocaleDateString();
+		const res = insertNewTurn({...turn,  timeStamp: today });
 		setTurn({ ...turn, docList: res.id });
 		setTurnList([...turnList, turn]);
 		setTurn(initialForm);

@@ -50,6 +50,7 @@ const Dashboard = () => {
 			{
 				turns.map((turn) => <Turn
 					key={turn.id}
+					timeStamp={turn.timeStamp}
 					id={turn.id}
 					docId={turn.docId}
 					placeToShift={turn.placeToShift} 

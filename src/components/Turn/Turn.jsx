@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { toast, Toaster } from 'react-hot-toast';
+import moment from 'moment/moment';
+import 'moment/locale/es';
 
-const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId }) => {
+const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp }) => {
+    
+    moment.locale('es');
 
     const [isEditable, setIsEditable] = useState(false);
     const [cPlace, setCPlace] = useState(placeToShift);
@@ -60,6 +64,12 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
         toast.success('¡Copiado al portapapeles!');
     }
 
+    const calculateTimeTravel = (time) => {
+        let calculatedTime = moment(time, 'DDMMYYYY').startOf('day').fromNow();
+        return calculatedTime;
+    }
+
+
     return (
         <div id={id}>
             {
@@ -87,8 +97,9 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                     <>
                         <h2>{cPlace}</h2>
                         <p>{cDate}</p>
-                        <p>{cAdmissionTime}</p>
-                        <p>{cDepartureTime}</p>
+                        <p>{moment(cAdmissionTime, 'HH:mm:ss').format('h:mm A')}</p>
+                        <p>{moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
+                        <p>Creado el {timeStamp} {calculateTimeTravel(timeStamp)}</p>
                         <div>
                             <button onClick={handleEditTurn}>Editar</button>
                             <button onClick={handleConfirmDelete}>Eliminar</button>
