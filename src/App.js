@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router';
 import ChooseUsername from './components/ChooseUsername/ChooseUsername';
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
-import './App.css';
 import Home from './components/Home/Home';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
@@ -33,8 +32,6 @@ function App() {
               <ChooseUsername/>
             </ProtectedRoute>
           }/> 
-          {/* <Route path="/signout" element={<SingOut/>}/>  */}
-          {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
         </Routes>
     </AuthProvider>
   );
