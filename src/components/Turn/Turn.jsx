@@ -65,11 +65,10 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     }
 
     const calculateTimeTravel = (time) => {
-        let calculatedTime = moment(time, 'DDMMYYYY').startOf('day').fromNow();
+        let calculatedTime = moment('1/02/2023', 'DDMMYYYY').startOf('minutes').fromNow();
         return calculatedTime;
     }
-
-
+    
     return (
         <div id={id}>
             {

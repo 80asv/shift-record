@@ -57,11 +57,11 @@ const Dashboard = () => {
 			} else {
 				setTurns(res); // sin filtros
 			}
-			
+			console.log(res)
 			setLoading(false);
 		}
 		getTurnsList();
-	}, [turns]);
+	}, [date , isFiltereByDateTurn, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
 
 	const handleDeleteTurn = async (docId) => {
 		await deleteTurn(docId);
