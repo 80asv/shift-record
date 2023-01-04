@@ -2,3 +2,7 @@
 
 @import './scss/utilities/variables';
 @import './scss/base/typo';
+
+body{
+    background-color: var(--color-bg);
+}

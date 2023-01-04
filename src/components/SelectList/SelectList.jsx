@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import './SelectList.scss'
 
-const SelectList = ({ title, handleChange, data, id }) => {
+const SelectList = ({ title, handleChange, data }) => {
 
     const [dataOptions, setDataOptions] = useState(data);
 
@@ -9,12 +10,10 @@ const SelectList = ({ title, handleChange, data, id }) => {
     }, [data]);
     
     return (
-		<div>
-			<select onChange={handleChange}>
-				<option value="" defaultChecked> filtrar por {title} </option>
-                { dataOptions && dataOptions.map((option, index) => <option key={index}>{option}</option>) }
-			</select>
-		</div>
+        <select onChange={handleChange} className='selectlist'>
+            <option value="" defaultChecked className='seleclist__op'>{title}</option>
+            { dataOptions && dataOptions.map((option, index) => <option className='seleclist__op' key={index}>{option}</option>) }
+        </select>
 	)
 }
 

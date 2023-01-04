@@ -1,5 +1,8 @@
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { useAuth } from '../../context/AuthContext'
+import './HomeWrapper.scss';
 
 const HomeWrapper = ({ children }) => {
 
@@ -15,10 +18,13 @@ const HomeWrapper = ({ children }) => {
 
   return (
     <div>
-        <nav>
-            <div>Logotipo</div>
-            <button onClick={handleLogout}>Logout</button>
-        </nav>
+        <header className='header'>
+            <div className='header__logo'>
+				<FontAwesomeIcon icon={faBook} className='header__logo-icon'/>
+				<h1 className='header__logo-h1'>Registro de turnos</h1>
+			</div>
+			<button className='header__btn-cerrarsesion' onClick={handleLogout}>Cerrar sesión</button>
+        </header>
         <div>
             { children }
         </div>

@@ -1,0 +1,168 @@
+.copy {}
+
+.delete {}
+
+.edit {}
+
+.turn {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px 30px 30px 30px;
+    box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
+    background-color: #ffffff;
+    overflow: hidden;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 0;
+    border-radius: 17px;
+    //min-width: 450px;
+    //max-width: 500px;
+    flex-grow: 1;
+
+    &__btn{
+        color: var(--color-text);
+        font-size: 1.0625rem;
+    }
+
+    &__body {
+        box-sizing: border-box;
+        flex-shrink: 0;
+        min-height: 208px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 30px 0px 0px 0px;
+        background-color: rgba(255, 255, 255, 0);
+        overflow: hidden;
+        position: relative;
+        align-content: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    &__body-aditionalinfo {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: hidden;
+        position: relative;
+        align-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 10px;
+
+        &-price{
+            flex-shrink: 0;
+            white-space: pre;
+            position: relative;
+            font-weight: 600;
+            font-style: normal;
+            font-family: "Albert Sans", sans-serif;
+            color: #579bfa;
+            font-size: 18px;
+            letter-spacing: 0px;
+            line-height: 1.2;
+        }
+
+        &-inforegister{
+            flex-shrink: 0;
+            white-space: pre;
+            position: relative;
+            font-weight: 300;
+            font-style: normal;
+            font-family: "Albert Sans", sans-serif;
+            color: #292d5c;
+            font-size: 15px;
+            letter-spacing: 0px;
+            line-height: 1.2;
+        }
+    }
+
+    &__body-dates {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: hidden;
+        position: relative;
+        align-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 15px;
+
+        p{
+            font-size: 18px;
+        }
+    }
+
+    &__header {
+        flex-shrink: 0;
+        width: 100%;
+        height: min-content; /* 43px */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(153, 238, 255, 0);
+        overflow: hidden;
+        position: relative;
+        padding: 0px 0px 0px 0px;
+        align-content: center;
+        flex-wrap: nowrap;
+    }
+
+    &__header-btns {
+        flex-shrink: 0;
+        // width: min-content; /* 149px */
+        // height: min-content; /* 43px */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0);
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+
+        .turn__btn{
+            cursor: pointer;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            width: 43px;
+            height: 43px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f5ff;
+            overflow: hidden;
+            position: relative;
+            padding: 0px 0px 0px 0px;
+            align-content: center;
+            flex-wrap: nowrap;
+            gap: 0;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            border: 2px solid rgba(41, 45, 92, 0.12);
+        }
+    }
+
+    &__header-place {
+        flex-shrink: 0;
+        width: auto; /* 208px */
+        height: auto; /* 42px */
+        white-space: pre;
+        position: relative;
+        font-weight: 700;
+        font-style: normal;
+        font-family: "Albert Sans", sans-serif;
+        color: #292d5c;
+        font-size: 35px;
+        letter-spacing: 0px;
+        line-height: 1.2;
+    }
+}

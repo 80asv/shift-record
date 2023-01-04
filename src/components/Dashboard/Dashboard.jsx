@@ -1,3 +1,5 @@
+import { faBook } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
@@ -6,6 +8,7 @@ import HomeWrapper from '../HomeWrapper/HomeWrapper'
 import Loader from '../Loader/Loader'
 import SelectList from '../SelectList/SelectList'
 import Turn from '../Turn/Turn'
+import './Dashboard.scss'
 
 /**
  * TODO: Sistema de filtro
@@ -95,27 +98,52 @@ const Dashboard = () => {
 
   	return (
 		<HomeWrapper>
-			<h1>DASHBOARD de {user.displayName}</h1>
-			<Link to='/dashboard/agregar-turno'>Agregar nuevo turno</Link>
-			<div className='filters'>
-				<SelectList id='placeToShift' title='Lugar' handleChange={handleChangeFilterByPlace} data={listPlaces}/>
-				<SelectList id='dateTurn' title='fecha del turno' handleChange={handleChangeFilterByDate} data={listDates}/>
+			<div className="card">
+				<div className='card__info'>
+					<p className='card__info-title'>Total recogido este mes</p>
+					<p className='card__info-money'>$106.000 COP</p>
+					<p className='card__info-label'>suma total de cada precio de los turnos</p>
+				</div>
+				<button className='card__btn'>
+					<FontAwesomeIcon icon={faBook} className='card__btn-icon'/>
+					<p className='card__btn-label'>Copiar turnos visibles</p>
+				</button>
 			</div>
+			<div className='dashboard__header'>
+				<h2><p className='dashboard__header-saludo'>Bienvenid@</p>{user.displayName}</h2>
+				
+			</div>
+			<main className='main'>
+				<h3 className='main__misturnos'>Mis turnos</h3>
+				<div className='main__btns'>
+					<Link to='/dashboard/agregar-turno' className='main__btns-agregarturno'>
+						<FontAwesomeIcon icon={faBook}/>
+						<p>Nuevo turno</p>
+					</Link>
+					<div className='main__btns-filters'>
+						<SelectList className='main__btns-filters-place main__btns-filters-btn' id='placeToShift' title='lugares' handleChange={handleChangeFilterByPlace} data={listPlaces}/>
+						<SelectList className='main__btns-filters-date main__btns-filters-btn' id='dateTurn' title='fechas' handleChange={handleChangeFilterByDate} data={listDates}/>
+					</div>
+				</div>
+				<div className="main__turns">
+					{
+						turns.map((turn) => <Turn
+							key={turn.id}
+							timeStamp={turn.timeStamp}
+							id={turn.id}
+							docId={turn.docId}
+							placeToShift={turn.placeToShift} 
+							dateTurn={turn.dateTurn} 
+							admissionTime={turn.admissionTime} 
+							departureTime={turn.departureTime}
+							onDelete={handleDeleteTurn}
+							onEdit={handleEditTurn}
+						/>)
+					}
+				</div>
+			</main>
 			{loading && <Loader/>}
-			{
-				turns.map((turn) => <Turn
-					key={turn.id}
-					timeStamp={turn.timeStamp}
-					id={turn.id}
-					docId={turn.docId}
-					placeToShift={turn.placeToShift} 
-					dateTurn={turn.dateTurn} 
-					admissionTime={turn.admissionTime} 
-					departureTime={turn.departureTime}
-					onDelete={handleDeleteTurn}
-					onEdit={handleEditTurn}
-				/>)
-			}
+			
 		</HomeWrapper>
 	)
 }

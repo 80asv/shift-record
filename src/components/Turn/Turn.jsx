@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { toast, Toaster } from 'react-hot-toast';
 import moment from 'moment/moment';
+import './Turn.scss'
 import 'moment/locale/es';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp }) => {
     
@@ -65,12 +68,12 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     }
 
     const calculateTimeTravel = (time) => {
-        let calculatedTime = moment('1/02/2023', 'DDMMYYYY').startOf('minutes').fromNow();
+        let calculatedTime = moment(time, 'DDMMYYYY').startOf('minutes').fromNow();
         return calculatedTime;
     }
     
     return (
-        <div id={id}>
+        <div id={id} className='turn'>
             {
                 isEditable ? (
                     <>
@@ -94,18 +97,34 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                     </>
                 ) : (
                     <>
-                        <h2>Lugar del Turno: {cPlace}</h2>
-                        <p>Fecha: {cDate}</p>
-                        <p>Hora ingreso: {moment(cAdmissionTime, 'HH:mm:ss').format('h:mm A')}</p>
-                        <p>Hora salida: {moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
-                        <p>Creado el {timeStamp} {calculateTimeTravel(timeStamp)}</p>
-                        <div>
-                            <button onClick={handleEditTurn}>Editar</button>
-                            <button onClick={handleConfirmDelete}>Eliminar</button>
-                            <CopyToClipboard text={copyToClipboardValues}>
-                                <button onClick={handleCopyToClipBoard}>copiar al portapapeles</button>
-                            </CopyToClipboard>
+                        <div className="turn__header">
+                            <h2 className='turn__header-place'>{cPlace}</h2>
+                            <div className='turn__header-btns'>
+                                <button onClick={handleEditTurn} className='turn__btn edit'>
+                                    <FontAwesomeIcon icon={faPenToSquare}/>
+                                </button>
+                                <CopyToClipboard text={copyToClipboardValues}>
+                                    <button onClick={handleCopyToClipBoard} className='turn__btn copy'>
+                                        <FontAwesomeIcon icon={faCopy}/>
+                                    </button>
+                                </CopyToClipboard>
+                                <button onClick={handleConfirmDelete} className='turn__btn delete'>
+                                    <FontAwesomeIcon icon={faTrash}/>
+                                </button>
+                            </div>
                         </div>
+                        <div className='turn__body'>
+                            <div className='turn__body-dates'>
+                                <p><b style={{fontWeight: '700'}}>Fecha:</b> {cDate}</p>
+                                <p><b style={{fontWeight: '700'}}>Hora ingreso:</b> {moment(cAdmissionTime, 'HH:mm:ss').format('h:mm A')}</p>
+                                <p><b style={{fontWeight: '700'}}>Hora salida:</b> {moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
+                            </div>
+                            <div className='turn__body-aditionalinfo'>
+                                <p className='turn__body-aditionalinfo-price'>Precio turno: $45.000 COP</p>
+                                <p className='turn__body-aditionalinfo-inforegister'>Creado el {timeStamp} {calculateTimeTravel(timeStamp)}</p>
+                            </div>
+                        </div>
+                        
                     </>
                 )
             }
