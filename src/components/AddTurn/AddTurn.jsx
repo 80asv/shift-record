@@ -5,6 +5,9 @@ import HomeWrapper from '../HomeWrapper/HomeWrapper'
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewTurn } from '../../db/firebase';
 import { toast, Toaster } from 'react-hot-toast';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import './AddTurn.scss';
 
 const initialForm = {
 	placeToShift: '',
@@ -59,19 +62,46 @@ const AddTurn = () => {
 
 	return (
 		<HomeWrapper>
-			<h2>Agregar nuevo turno</h2>
-			<form onSubmit={handleSubmit}>
-				<Link to='/dashboard'>Volver</Link>
-				<label htmlFor="placeToShift">Lugar del turno</label>
-				<input type="text" name="placeToShift" id="placeToShift" onChange={handleChange} value={turn.placeToShift}/>
-				<label htmlFor="dateTurn">Dia de Inicio</label>
-				<input type="date" name="dateTurn" id="dateTurn" onChange={handleChange} value={turn.dateTurn}/>
-				<label htmlFor="admissionTime">Hora de ingreso</label>
-				<input type="time" name="admissionTime" id="admissionTime" onChange={handleChange} value={turn.admissionTime}/>
-				<label htmlFor="departureTime">Hora de salida</label>
-				<input type="time" name="departureTime" id="departureTime" onChange={handleChange} value={turn.departureTime}/>
-				<input type="submit" value="Agregar" />
-			</form>
+			<div className='form'>
+				<form className='form__card' onSubmit={handleSubmit}>
+					<h2 className='form__card-title'>Registrar turno</h2>
+					<div className='form__card-container'>
+						<div className='form__card-inputs'>
+							<div className='form__card-inputs-place'>
+								<label htmlFor="placeToShift">Lugar del turno</label>
+								<input type="text" name="placeToShift" id="placeToShift" onChange={handleChange} value={turn.placeToShift}/>
+							</div>
+							<div className='form__card-inputs-date'>
+								<label htmlFor="dateTurn">Dia de Inicio</label>
+								<input type="date" name="dateTurn" id="dateTurn" onChange={handleChange} value={turn.dateTurn}/>
+							</div>
+							<div className='form__card-inputs-hours'>
+								<div className='form__card-inputs-hours-admissiontime'>
+									<label htmlFor="admissionTime">Hora de ingreso</label>
+									<input type="time" name="admissionTime" id="admissionTime" onChange={handleChange} value={turn.admissionTime}/>
+								</div>
+								<div className='form__card-inputs-hours-departuretime'>
+									<label htmlFor="departureTime">Hora de salida</label>
+									<input type="time" name="departureTime" id="departureTime" onChange={handleChange} value={turn.departureTime}/>
+								</div>
+							</div>
+							<div className='form__card-footer'>
+								<div className='form__card-footer-info'>
+									<p className='form__card-footer-info-priceturn'>Valor del turno: </p>
+									<div className='form__card-footer-info-message'>
+										<FontAwesomeIcon icon={faCircleExclamation} className='icon'/>
+										<p className='message'>tenga en cuenta que el valor del turno es un estimado y puede no ser exacto al valor final de su nomina.</p>
+									</div>
+								</div>
+								<div className='form__card-footer-btns'>
+									<Link to='/dashboard'>Volver</Link>
+									<input type="submit" value="Agregar" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
 			<Toaster/>
 		</HomeWrapper>
 	)

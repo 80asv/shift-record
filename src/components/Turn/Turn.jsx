@@ -5,7 +5,7 @@ import moment from 'moment/moment';
 import './Turn.scss'
 import 'moment/locale/es';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCopy, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp }) => {
     
@@ -73,11 +73,48 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     }
     
     return (
-        <div id={id} className='turn'>
+        <div id={id} className={`turn ${isEditable ? 'turn-edit' : ''}`}>
             {
                 isEditable ? (
                     <>
-                        <input type="text" name='placeToShift' 
+                        <div className="turn__header">
+                            <input type="text" name='placeToShift' 
+                                className='turn__header-place-edit'
+                                value={cPlace} 
+                                onChange={handleChangePlace}
+                            />
+                            <div className='turn__header-btns'>
+                                <button onClick={handleConfirmEdit} className='turn__btn confirm'>
+                                    <FontAwesomeIcon icon={faCheck}/>
+                                </button>
+                            </div>
+                        </div>
+                        <div className='turn__body'>
+                            <div className='turn__body-dates-edit'>
+                                <p>
+                                    <b style={{fontWeight: '700'}}>Fecha:</b> 
+                                    <input type="date" name='dateTurn'  
+                                        value={cDate} 
+                                        onChange={handleChangeDateTurn}
+                                    />
+                                </p>
+                                <p>
+                                    <b style={{fontWeight: '700'}}>Hora ingreso:</b>
+                                    <input type="time" name='admissionTime' 
+                                        value={cAdmissionTime} 
+                                        onChange={handleChangeAdmissionTime}
+                                    />
+                                </p>
+                                <p>
+                                    <b style={{fontWeight: '700'}}>Hora salida:</b>
+                                    <input type="time" name='departureTime'
+                                        value={cDepartureTime} 
+                                        onChange={handleChangeDepartureTime}
+                                    />
+                                </p>
+                            </div>
+                        </div>
+                        {/* <input type="text" name='placeToShift' 
                             value={cPlace} 
                             onChange={handleChangePlace}
                         />
@@ -93,7 +130,7 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                             value={cDepartureTime} 
                             onChange={handleChangeDepartureTime}
                         />
-                        <button onClick={handleConfirmEdit}>Confirmar</button>
+                        <button onClick={handleConfirmEdit}>Confirmar</button> */}
                     </>
                 ) : (
                     <>
@@ -124,7 +161,6 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                                 <p className='turn__body-aditionalinfo-inforegister'>Creado el {timeStamp} {calculateTimeTravel(timeStamp)}</p>
                             </div>
                         </div>
-                        
                     </>
                 )
             }

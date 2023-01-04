@@ -16,6 +16,9 @@ import './Dashboard.scss'
  * TODO: Componente loading
  * TODO: Formateo de horas
  * TODO: Añadir mas informacion de registro de turnos (fecha y hora de registro)
+ * 
+ * TODO: revisar marcas de tiempo
+ * TODO: calcular precio de turnos
  */
 
 const Dashboard = () => {
@@ -98,20 +101,19 @@ const Dashboard = () => {
 
   	return (
 		<HomeWrapper>
-			<div className="card">
-				<div className='card__info'>
-					<p className='card__info-title'>Total recogido este mes</p>
-					<p className='card__info-money'>$106.000 COP</p>
-					<p className='card__info-label'>suma total de cada precio de los turnos</p>
-				</div>
-				<button className='card__btn'>
-					<FontAwesomeIcon icon={faBook} className='card__btn-icon'/>
-					<p className='card__btn-label'>Copiar turnos visibles</p>
-				</button>
-			</div>
 			<div className='dashboard__header'>
 				<h2><p className='dashboard__header-saludo'>Bienvenid@</p>{user.displayName}</h2>
-				
+				<div className="card">
+					<div className='card__info'>
+						<p className='card__info-title'>Total recogido este mes</p>
+						<p className='card__info-money'>$106.000 COP</p>
+						<p className='card__info-label'>suma total de cada precio de los turnos</p>
+					</div>
+					<button className='card__btn'>
+						<FontAwesomeIcon icon={faBook} className='card__btn-icon'/>
+						<p className='card__btn-label'>Copiar turnos visibles</p>
+					</button>
+				</div>
 			</div>
 			<main className='main'>
 				<h3 className='main__misturnos'>Mis turnos</h3>
