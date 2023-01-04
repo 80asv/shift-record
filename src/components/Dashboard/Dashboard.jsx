@@ -53,7 +53,6 @@ const Dashboard = () => {
 			// TODO: PENDIENTE
 			setCollecredThisMounth(()=> {
 				const dates = res.map(turn => turn.dateTurn);
-				console.log(dates);
 				return dates;
 			})
 
@@ -71,7 +70,6 @@ const Dashboard = () => {
 			} else {
 				setTurns(res); // sin filtros
 			}
-			console.log(res)
 			setLoading(false);
 		}
 		getTurnsList();

@@ -75,7 +75,6 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     }
 
     const calculateTimeTravel = (time) => {
-        console.log(time)
         let calculatedTime = moment(time, 'MMMM Do YYYY, h:mm:ss a').startOf('minute').fromNow();
         return calculatedTime;
     }

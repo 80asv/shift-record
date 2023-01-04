@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import HomeWrapper from '../HomeWrapper/HomeWrapper'
@@ -10,6 +10,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import './AddTurn.scss';
 import moment from 'moment';
 import 'moment/locale/es';
+import CheckBox from '../CheckBox/CheckBox';
 
 const initialForm = {
 	placeToShift: '',
@@ -25,6 +26,16 @@ const AddTurn = () => {
 	const { user } = useAuth();
 	const [turn, setTurn] = useState(initialForm);
 	const [turnList, setTurnList] = useState([]);
+	const [workingHours, setWorkingHours] = useState(0);
+
+	useEffect(() => {
+		setWorkingHours(() => {
+			let date1 = moment(turn.admissionTime, 'hh:mm a');
+			let date2 = moment(turn.departureTime, 'hh:mm a');
+			return (date1.diff(date2, 'hours') * (-1));
+		})
+	}, [turn.admissionTime, turn.departureTime])
+	
 	
 	const handleChange = ({ target: { name, value } }) => {
 		setTurn({ ...turn, [name]: value, uid: user.uid, id: uuidv4() })
@@ -37,6 +48,10 @@ const AddTurn = () => {
 			}
 		}
 		return false;
+	}
+
+	const calculatePriceTurn = () => {
+		
 	}
 
 	const handleSubmit = (e) => {
@@ -89,20 +104,21 @@ const AddTurn = () => {
 									<input type="time" name="departureTime" id="departureTime" onChange={handleChange} value={turn.departureTime}/>
 								</div>
 							</div>
+							<CheckBox name='festiveDay' title='El turno es dia festivo/dominical'/>
 						</div>
 						<div className='form__card-footer'>
-								<div className='form__card-footer-info'>
-									<p className='form__card-footer-info-priceturn'>Valor del turno: </p>
-									<div className='form__card-footer-info-message'>
-										<FontAwesomeIcon icon={faCircleExclamation} className='icon'/>
-										<p className='message'>tenga en cuenta que el valor del turno es un estimado y puede no ser exacto al valor final de su nomina.</p>
-									</div>
-								</div>
-								<div className='form__card-footer-btns'>
-									<input type="submit" value="Registrar" className='btn-registrar'/>
-									<Link to='/dashboard' className='btn-volver'>Volver</Link>
+							<div className='form__card-footer-info'>
+								<p className='form__card-footer-info-priceturn'>Valor del turno: </p>
+								<div className='form__card-footer-info-message'>
+									<FontAwesomeIcon icon={faCircleExclamation} className='icon'/>
+									<p className='message'>Tenga en cuenta que el valor del turno es un estimado y puede no ser exacto al valor final de su nomina.</p>
 								</div>
 							</div>
+							<div className='form__card-footer-btns'>
+								<input type="submit" value="Registrar" className='btn-registrar'/>
+								<Link to='/dashboard' className='btn-volver'>Volver</Link>
+							</div>
+						</div>
 					</div>
 				</form>
 			</div>
