@@ -33,6 +33,7 @@ const Dashboard = () => {
 
 	const [listPlaces, setListPlaces] = useState([]);
 	const [listDates, setListDates] = useState([]);
+	const [collecredThisMounth, setCollecredThisMounth] = useState(0);
 
 	useEffect(() => {
 		const getTurnsList = async () => {
@@ -47,6 +48,13 @@ const Dashboard = () => {
 			setListDates(() => { // listar fechas
 				const dates = res.map(turn => turn.dateTurn);
 				return [...new Set(dates)];
+			})
+
+			// TODO: PENDIENTE
+			setCollecredThisMounth(()=> {
+				const dates = res.map(turn => turn.dateTurn);
+				console.log(dates);
+				return dates;
 			})
 
 			/* Filtros */
@@ -145,7 +153,6 @@ const Dashboard = () => {
 				</div>
 			</main>
 			{loading && <Loader/>}
-			
 		</HomeWrapper>
 	)
 }

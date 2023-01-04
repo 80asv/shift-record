@@ -23,6 +23,7 @@
     &__card {
         box-sizing: border-box;
         flex-shrink: 0;
+        margin-top: 2rem;
         width: 28.6875rem;
         display: flex;
         flex-direction: column;
@@ -64,6 +65,7 @@
     &__card-inputs {
         flex-shrink: 0;
         display: flex;
+        width: 100%;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
@@ -138,31 +140,109 @@
     }
 
     &__card-footer {
-        
+        flex-shrink: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 20px;
     }
 
-    &__card-footer-btns {}
+    &__card-footer-btns {
+        flex-shrink: 0;
+        height: 43px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 10px;
 
-    &__card-footer-info {}
+        .btn-registrar{
+            width: 100px;
+            height: 43px;
+            background-color: var(--color-blue);
+            border-radius: 10px;
+            color: var(--color-white);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
 
-    &__card-footer-info-message {}
+        .btn-volver{
+            flex-shrink: 0;
+            width: 100px;
+            height: 43px;
+            color: var(--color-blue);
+            background-color: var(--color-light-blue);
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 
-    &__card-footer-info-priceturn {}
+    &__card-footer-info {
+        flex-shrink: 0;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
 
-    &__card-input-admissiontime {}
+    &__card-footer-info-message {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 5px;
 
-    &__card-input-departuretime {}
+        .icon {
+            width: auto;
+            font-size: 21px;
+            color: var(--color-red);
+        }
 
+        .message {
+            flex-shrink: 0;
+            flex: 1 0 0px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-word;
+            position: relative;
+            font-weight: 500;
+            color: var(--color-red);
+            font-size: 12px;
+            line-height: 1.2;
+        }
+    }
 
-    &__card-inputs-date {}
-
-    
-
-    &__card-inputs-place {}
-
-    
+    &__card-footer-info-priceturn {
+        flex-shrink: 0;
+        position: relative;
+        font-weight: 500;
+        color: var(--color-blue);
+        font-size: 17px;
+        line-height: 1.2;
+    }
 }
 
-.icon {}
 
-.message {}
+

@@ -8,6 +8,8 @@ import { toast, Toaster } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import './AddTurn.scss';
+import moment from 'moment';
+import 'moment/locale/es';
 
 const initialForm = {
 	placeToShift: '',
@@ -17,6 +19,8 @@ const initialForm = {
 }
 
 const AddTurn = () => {
+
+	moment.locale('es');
 
 	const { user } = useAuth();
 	const [turn, setTurn] = useState(initialForm);
@@ -53,7 +57,7 @@ const AddTurn = () => {
 	}
 
 	const addTurn = () => {
-		let today = new Date().toLocaleDateString();
+		let today = moment().format('MMMM Do YYYY, h:mm:ss a');
 		const res = insertNewTurn({...turn,  timeStamp: today });
 		setTurn({ ...turn, docList: res.id });
 		setTurnList([...turnList, turn]);
@@ -85,7 +89,8 @@ const AddTurn = () => {
 									<input type="time" name="departureTime" id="departureTime" onChange={handleChange} value={turn.departureTime}/>
 								</div>
 							</div>
-							<div className='form__card-footer'>
+						</div>
+						<div className='form__card-footer'>
 								<div className='form__card-footer-info'>
 									<p className='form__card-footer-info-priceturn'>Valor del turno: </p>
 									<div className='form__card-footer-info-message'>
@@ -94,11 +99,10 @@ const AddTurn = () => {
 									</div>
 								</div>
 								<div className='form__card-footer-btns'>
-									<Link to='/dashboard'>Volver</Link>
-									<input type="submit" value="Agregar" />
+									<input type="submit" value="Registrar" className='btn-registrar'/>
+									<Link to='/dashboard' className='btn-volver'>Volver</Link>
 								</div>
 							</div>
-						</div>
 					</div>
 				</form>
 			</div>
