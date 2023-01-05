@@ -29,15 +29,15 @@ const Dashboard = () => {
 	const [turns, setTurns] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [isFilteredByPlace, setIsFilteredByPlace] = useState(false);
-	const [isFiltereByDateTurn, setIsFiltereByDateTurn] = useState(false);
+	// const [isFiltereByDateTurn, setIsFiltereByDateTurn] = useState(false); //! Sin uso
 	const [isFilteredByMounth, setIsFilteredByMounth] = useState(false);
 
 	const [place, setPlace] = useState('');
-	const [date, setDate] = useState('');
+	// const [date, setDate] = useState(''); //! Sin uso
 	const [mounth, setMounth] = useState('')
 
 	const [listPlaces, setListPlaces] = useState([]);
-	const [listDates, setListDates] = useState([]);
+	// const [listDates, setListDates] = useState([]); //! Sin uso
 	const [listMouths, setListMouths] = useState([]);
 	const [collectedThisMounth, setCollectedThisMounth] = useState(0);
 
@@ -51,10 +51,10 @@ const Dashboard = () => {
 				return [...new Set(places)]; // eliminar los repetidos
 			})
 
-			setListDates(() => { // listar fechas
-				const dates = res.map(turn => turn.dateTurn);
-				return [...new Set(dates)];
-			})
+			// setListDates(() => { // listar fechas //! Sin uso
+			// 	const dates = res.map(turn => turn.dateTurn);
+			// 	return [...new Set(dates)];
+			// })
 
 			setListMouths(() => { // listar meses
 				const dates = res.map(turn => moment(turn.dateTurn, 'YYYY-MM-DD').format('MMMM YYYY'));
@@ -76,12 +76,12 @@ const Dashboard = () => {
 					const placesFiltered = res.filter((turn) => turn.placeToShift === place);
 					return placesFiltered;
 				});
-			} else if(isFiltereByDateTurn){ // filtro por fechas
+			}/* else if(isFiltereByDateTurn){ // filtro por fechas //! Sin uso
 				setTurns(() => {
 					const datesFiltered = res.filter((turn) => turn.dateTurn === date);
 					return datesFiltered
 				});
-			} else if(isFilteredByMounth){
+			}*/else if(isFilteredByMounth){
 				setTurns(() => { // filtro por meses
 					const datesFiltered = res.filter((turn) => moment(turn.dateTurn, 'YYYY-MM-DD').format('MMMM YYYY') === mounth)
 					return datesFiltered;
@@ -93,7 +93,7 @@ const Dashboard = () => {
 		}
 		getTurnsList();
 		console.log('first')
-	}, [mounth, date, isFiltereByDateTurn, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
+	}, [mounth, /* date, isFiltereByDateTurn */, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
 
 	const handleDeleteTurn = async (docId) => {
 		await deleteTurn(docId);
@@ -116,14 +116,14 @@ const Dashboard = () => {
 		}
 	}
 
-	const handleChangeFilterByDate = (e) => {
-		setDate(e.target.value);
-		if(e.target.value !== ''){
-			setIsFiltereByDateTurn(true)
-		} else {
-			setIsFiltereByDateTurn(false)
-		}
-	}
+	// const handleChangeFilterByDate = (e) => { //! Sin uso
+	// 	setDate(e.target.value);
+	// 	if(e.target.value !== ''){
+	// 		setIsFiltereByDateTurn(true)
+	// 	} else {
+	// 		setIsFiltereByDateTurn(false)
+	// 	}
+	// }
 
 	const handleChangeFilterByMouth = (e) => {
 		setMounth(e.target.value);
@@ -135,7 +135,7 @@ const Dashboard = () => {
 	}
 
 	const copyShiftsToClipBoard = () => {
-		let text = 'Turnos laborales\n';
+		let text = 'Turnos laborales\n\n';
 		turns.forEach(({placeToShift, dateTurn, admissionTime, departureTime}) => {
 			text+=`Lugar Turno: ${placeToShift}\nFecha: ${moment(dateTurn, 'YYYY-MM-DD').format('DD/MM/YYYY')}\nHora Ingreso: ${moment(admissionTime, 'HH:mm').format('hh:mm A')}\nHora Salida: ${moment(departureTime, 'HH:mm').format('hh:mm A')}\n\n`;
 		})
@@ -151,7 +151,7 @@ const Dashboard = () => {
 					<div className='card__info'>
 						<p className='card__info-title'>Total recogido este mes</p>
 						<p className='card__info-money'>${collectedThisMounth.toLocaleString('co-CO', {maximumFractionDigits: 1})} COP</p>
-						<p className='card__info-label'>suma total de cada precio de los turnos</p>
+						<p className='card__info-label'>suma total del mes de {moment().format('MMMM')}</p>
 					</div>
 
 					<CopyToClipboard text={copyShiftsToClipBoard()}>
@@ -171,8 +171,8 @@ const Dashboard = () => {
 					</Link>
 					<div className='main__btns-filters'>
 						<SelectList className='main__btns-filters-place main__btns-filters-btn' id='placeToShift' title='lugares' handleChange={handleChangeFilterByPlace} data={listPlaces}/>
-						<SelectList className='main__btns-filters-date main__btns-filters-btn' id='dateTurn' title='fechas' handleChange={handleChangeFilterByDate} data={listDates}/>
 						<SelectList className='main__btns-filters-date main__btns-filters-btn' id='mounths' title='mes' handleChange={handleChangeFilterByMouth} data={listMouths}/>
+						{/* <SelectList className='main__btns-filters-date main__btns-filters-btn' id='dateTurn' title='fechas' handleChange={handleChangeFilterByDate} data={listDates}/> // !Sin uso */}
 					</div>
 				</div>
 				<div className="main__turns">
