@@ -73,6 +73,16 @@
         flex-wrap: nowrap;
         gap: 10px;
 
+        &-type-shift{
+            
+            &-radiobtn{
+                display: flex;
+                flex-direction: row;
+                gap: 25px;
+                width: 100%;
+            }
+        }
+
         &-place, &-date{
             flex-shrink: 0;
             display: flex;

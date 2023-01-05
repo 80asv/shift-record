@@ -1,13 +1,13 @@
 import React from 'react'
 import './CheckBox.scss'
 
-const CheckBox = ({name, title}) => {
+const CheckBox = ({title, handleChange, value}) => {
   return (
     <div className='checkbox-div'>
-        <label class="b-contain">
+        <label className="b-contain">
             <span>{title}</span>
-            <input type="checkbox" />
-            <div class="b-input"></div>
+            <input type="checkbox" onChange={handleChange} checked={value}/>
+            <div className="b-input"></div>
         </label>
     </div>
   )

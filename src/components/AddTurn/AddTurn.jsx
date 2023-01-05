@@ -11,12 +11,14 @@ import './AddTurn.scss';
 import moment from 'moment';
 import 'moment/locale/es';
 import CheckBox from '../CheckBox/CheckBox';
+import RadioBtn from '../RadioBtn/RadioBtn';
 
 const initialForm = {
 	placeToShift: '',
 	dateTurn: '',
 	admissionTime: '',
 	departureTime: '',
+	typeShift: ''
 }
 
 const AddTurn = () => {
@@ -25,21 +27,44 @@ const AddTurn = () => {
 
 	const { user } = useAuth();
 	const [turn, setTurn] = useState(initialForm);
-	const [turnList, setTurnList] = useState([]);
 	const [workingHours, setWorkingHours] = useState(0);
+	// const [checkBoxValue, setCheckBoxValue] = useState(false);
+	const [priceTurn, setPriceTurn] = useState(0);
+	const [isFestiveDay, setIsFestiveDay] = useState(false);
+	const handleCheckIsFestiveDay = (e) => setIsFestiveDay(e.target.checked);
 
 	useEffect(() => {
 		setWorkingHours(() => {
-			let date1 = moment(turn.admissionTime, 'hh:mm a');
-			let date2 = moment(turn.departureTime, 'hh:mm a');
+			let date1 = moment(turn.admissionTime, 'hh:mm A');
+			let date2 = moment(turn.departureTime, 'hh:mm A');
 			return (date1.diff(date2, 'hours') * (-1));
 		})
-	}, [turn.admissionTime, turn.departureTime])
+		setPriceTurn(() => {
+			const NORMAL = 34573;
+			const MEDIUM = 23073;
+			const FESTIVE = 51823;
+
+			if(turn.admissionTime === '' || turn.departureTime === ''){
+				return 0;
+			} else {
+				let priceHour = 0;
+				switch (turn.typeShift) {
+					case 'normal': priceHour = (NORMAL/8); break;
+					case 'medio': priceHour = (MEDIUM/4); break;
+					case 'festivo': priceHour = (FESTIVE/8); break;
+					case '': return 0;
+					default: return 0;
+				}
+				return (priceHour*workingHours);
+			}
+		})
+	}, [turn.admissionTime, turn.departureTime, isFestiveDay, turn.typeShift])
 	
 	
 	const handleChange = ({ target: { name, value } }) => {
 		setTurn({ ...turn, [name]: value, uid: user.uid, id: uuidv4() })
 	}
+	//const handleChangeCheckbox = (e) => setCheckBoxValue(e.target.checked);
 
 	const containsEmptyValues = (obj) => {
 		for (const value of Object.values(obj)) {
@@ -48,10 +73,6 @@ const AddTurn = () => {
 			}
 		}
 		return false;
-	}
-
-	const calculatePriceTurn = () => {
-		
 	}
 
 	const handleSubmit = (e) => {
@@ -73,9 +94,12 @@ const AddTurn = () => {
 
 	const addTurn = () => {
 		let today = moment().format('MMMM Do YYYY, h:mm:ss a');
-		const res = insertNewTurn({...turn,  timeStamp: today });
+		const res = insertNewTurn({
+			...turn,  
+			timeStamp: today, 
+			festiveDay: isFestiveDay,
+		});
 		setTurn({ ...turn, docList: res.id });
-		setTurnList([...turnList, turn]);
 		setTurn(initialForm);
 	}
 
@@ -104,11 +128,19 @@ const AddTurn = () => {
 									<input type="time" name="departureTime" id="departureTime" onChange={handleChange} value={turn.departureTime}/>
 								</div>
 							</div>
-							<CheckBox name='festiveDay' title='El turno es dia festivo/dominical'/>
+							<div className='form__card-inputs-type-shift'>
+								<label>Horario de turno</label>
+								<div className='form__card-inputs-type-shift-radiobtn'>
+									<RadioBtn name='typeShift' title='normal' handleChange={handleChange} value='normal'/>
+									<RadioBtn name='typeShift' title='medio' handleChange={handleChange} value='medio'/>
+									<RadioBtn name='typeShift' title='festivo' handleChange={handleChange} value='festivo'/>
+								</div>
+							</div>
+							
 						</div>
 						<div className='form__card-footer'>
 							<div className='form__card-footer-info'>
-								<p className='form__card-footer-info-priceturn'>Valor del turno: </p>
+								<p className='form__card-footer-info-priceturn'>Valor del turno: ${priceTurn.toFixed(1).toLocaleString('es-CO')} COP</p>
 								<div className='form__card-footer-info-message'>
 									<FontAwesomeIcon icon={faCircleExclamation} className='icon'/>
 									<p className='message'>Tenga en cuenta que el valor del turno es un estimado y puede no ser exacto al valor final de su nomina.</p>
