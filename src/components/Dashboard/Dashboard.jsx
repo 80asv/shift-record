@@ -137,6 +137,8 @@ const Dashboard = () => {
 					{
 						turns.map((turn) => <Turn
 							key={turn.id}
+							typeShift={turn.typeShift}
+							priceShift={turn.priceShift}
 							timeStamp={turn.timeStamp}
 							id={turn.id}
 							docId={turn.docId}

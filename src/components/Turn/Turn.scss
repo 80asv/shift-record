@@ -18,7 +18,7 @@
     flex-wrap: nowrap;
     gap: 0;
     border-radius: 1.0625rem;
-    min-height: 19.4375rem;
+    min-height: 346px;
     flex-grow: 1;
 
     &.turn-edit{
@@ -30,6 +30,13 @@
         font-size: 1.0625rem;
     }
 
+    &__footer-edit{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
     &__body {
         box-sizing: border-box;
         flex-shrink: 0;
@@ -38,7 +45,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-        padding: 30px 0px 0px 0px;
+        margin-top: auto;
         background-color: rgba(255, 255, 255, 0);
         overflow: hidden;
         position: relative;

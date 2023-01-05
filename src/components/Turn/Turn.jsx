@@ -6,8 +6,9 @@ import './Turn.scss'
 import 'moment/locale/es';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCopy, faPenToSquare, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import RadioBtn from '../RadioBtn/RadioBtn';
 
-const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp }) => {
+const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp, priceShift, typeShift, workingHours }) => {
     
     moment.locale('es');
 
@@ -16,6 +17,9 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     const [cDate, setCDate] = useState(dateTurn);
     const [cAdmissionTime, setCAdmissionTime] = useState(admissionTime);
     const [cDepartureTime, setCDepartureTime] = useState(departureTime);
+    const [cTypeShift, setCTypeShift] = useState(typeShift);
+    const [cPriceShift, setCPriceShift] = useState(priceShift);
+    const [cWorkingHours, setCWorkingHours] = useState(workingHours);
 
     const copyToClipboardValues = `Lugar Turno: ${cPlace}\nFecha: ${cDate}\nHora Ingreso: ${cAdmissionTime}\nHora Salida: ${cDepartureTime}`
 
@@ -25,13 +29,38 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
         if(turnRef.current){
             turnRef.current.focus();
         }
-    }, [isEditable])
+        setCWorkingHours(() => {
+			let date1 = moment(cAdmissionTime, 'hh:mm A');
+			let date2 = moment(cDepartureTime, 'hh:mm A');
+			return (date1.diff(date2, 'hours') * (-1));
+		})
+		setCPriceShift(() => {
+			const NORMAL = 34573;
+			const MEDIUM = 23073;
+			const FESTIVE = 51823;
+
+			if(cAdmissionTime === '' || cDepartureTime === ''){
+				return 0;
+			} else {
+				let priceHour = 0;
+				switch (cTypeShift) {
+					case 'normal': priceHour = (NORMAL/8); break;
+					case 'medio': priceHour = (MEDIUM/4); break;
+					case 'festivo': priceHour = (FESTIVE/8); break;
+					case '': return 0;
+					default: return 0;
+				}
+				return (priceHour*cWorkingHours);
+			}
+		})
+    }, [isEditable, cAdmissionTime, cDepartureTime, cTypeShift, cWorkingHours])
     
     
     const handleChangePlace = ({ target: { value } }) => setCPlace(value);
     const handleChangeDateTurn = ({ target: { value } }) => setCDate(value);
     const handleChangeAdmissionTime = ({ target: { value } }) => setCAdmissionTime(value);
     const handleChangeDepartureTime = ({ target: { value } }) => setCDepartureTime(value);
+    const handleChangeTypeShift = ({ target: { value } }) => setCTypeShift(value)
 
     const handleEditTurn = () => setIsEditable(true);
 
@@ -42,8 +71,12 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
             dateTurn: cDate,
             admissionTime: cAdmissionTime,
             departureTime: cDepartureTime,
+            workingHours: cWorkingHours,
+            priceShift: cPriceShift,
+            typeShift: cTypeShift
         }
         onEdit(docId, turnEdited);
+        toast.success('Turno actualizado!');
     }
 
     const handleConfirmDelete = () => {
@@ -67,6 +100,9 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
         setCDate(dateTurn);
         setCAdmissionTime(admissionTime);
         setCDepartureTime(departureTime);
+        setCPriceShift(priceShift);
+        setCWorkingHours(workingHours);
+        setCTypeShift(typeShift);
         setIsEditable(false);
     };
 
@@ -127,6 +163,19 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                                     />
                                 </p>
                             </div>
+
+                            <div className='turn__footer-edit'>
+                                <p className='form__card-footer-info-priceshift'>Valor del turno: ${cPriceShift.toFixed(1).toLocaleString('es-CO')} COP</p>
+                                <div className='form__card-inputs-type-shift'>
+                                    <label style={{fontWeight: '700', fontSize: '1rem'}}>Horario de turno</label>
+                                    <div className='form__card-inputs-type-shift-radiobtn'>
+                                        <RadioBtn name='typeShift' title='normal' handleChange={handleChangeTypeShift} value='normal'/>
+                                        <RadioBtn name='typeShift' title='medio' handleChange={handleChangeTypeShift} value='medio'/>
+                                        <RadioBtn name='typeShift' title='festivo' handleChange={handleChangeTypeShift} value='festivo'/>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </>
                 ) : (
@@ -154,7 +203,7 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                                 <p><b style={{fontWeight: '700'}}>Hora salida:</b> {moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
                             </div>
                             <div className='turn__body-aditionalinfo'>
-                                <p className='turn__body-aditionalinfo-price'>Precio turno: $45.000 COP</p>
+                                <p className='turn__body-aditionalinfo-price'>Precio turno: ${cPriceShift.toFixed(1).toLocaleString('es-CO')} COP</p>
                                 <p className='turn__body-aditionalinfo-inforegister'>Creado el {formatTimestamp(timeStamp)}, {calculateTimeTravel(timeStamp)}</p>
                             </div>
                         </div>
