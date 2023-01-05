@@ -165,7 +165,7 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                             </div>
 
                             <div className='turn__footer-edit'>
-                                <p className='form__card-footer-info-priceshift'>Valor del turno: ${cPriceShift.toFixed(1).toLocaleString('es-CO')} COP</p>
+                                <p className='form__card-footer-info-priceshift'>Valor del turno: ${cPriceShift.toLocaleString('co-CO', {maximumFractionDigits: 1})} COP</p>
                                 <div className='form__card-inputs-type-shift'>
                                     <label style={{fontWeight: '700', fontSize: '1rem'}}>Horario de turno</label>
                                     <div className='form__card-inputs-type-shift-radiobtn'>
@@ -198,12 +198,12 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                         </div>
                         <div className='turn__body'>
                             <div className='turn__body-dates'>
-                                <p><b style={{fontWeight: '700'}}>Fecha:</b> {cDate}</p>
+                                <p><b style={{fontWeight: '700'}}>Fecha:</b> {moment(cDate, 'YYYY-MM-DD').format('DD/MM/YYYY')}</p>
                                 <p><b style={{fontWeight: '700'}}>Hora ingreso:</b> {moment(cAdmissionTime, 'HH:mm:ss').format('h:mm A')}</p>
                                 <p><b style={{fontWeight: '700'}}>Hora salida:</b> {moment(cDepartureTime, 'HH:mm:ss').format('h:mm A')}</p>
                             </div>
                             <div className='turn__body-aditionalinfo'>
-                                <p className='turn__body-aditionalinfo-price'>Precio turno: ${cPriceShift.toFixed(1).toLocaleString('es-CO')} COP</p>
+                                <p className='turn__body-aditionalinfo-price'>Precio turno: ${cPriceShift.toLocaleString('co-CO', {maximumFractionDigits: 1})} COP</p>
                                 <p className='turn__body-aditionalinfo-inforegister'>Creado el {formatTimestamp(timeStamp)}, {calculateTimeTravel(timeStamp)}</p>
                             </div>
                         </div>

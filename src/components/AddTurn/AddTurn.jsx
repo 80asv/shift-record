@@ -137,7 +137,7 @@ const AddTurn = () => {
 						</div>
 						<div className='form__card-footer'>
 							<div className='form__card-footer-info'>
-								<p className='form__card-footer-info-priceshift'>Valor del turno: ${priceShift.toFixed(1).toLocaleString('es-CO')} COP</p>
+								<p className='form__card-footer-info-priceshift'>Valor del turno: ${priceShift.toLocaleString('co-CO', {maximumFractionDigits: 1})} COP</p>
 								<div className='form__card-footer-info-message'>
 									<FontAwesomeIcon icon={faCircleExclamation} className='icon'/>
 									<p className='message'>Tenga en cuenta que el valor del turno es un estimado y puede no ser exacto al valor final de su nomina.</p>

@@ -1,6 +1,9 @@
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { deleteTurn, getTurns, updateTurn } from '../../db/firebase'
@@ -27,13 +30,16 @@ const Dashboard = () => {
 	const [loading, setLoading] = useState(true);
 	const [isFilteredByPlace, setIsFilteredByPlace] = useState(false);
 	const [isFiltereByDateTurn, setIsFiltereByDateTurn] = useState(false);
+	const [isFilteredByMounth, setIsFilteredByMounth] = useState(false);
 
-	const [place, setPlace] = useState("");
+	const [place, setPlace] = useState('');
 	const [date, setDate] = useState('');
+	const [mounth, setMounth] = useState('')
 
 	const [listPlaces, setListPlaces] = useState([]);
 	const [listDates, setListDates] = useState([]);
-	const [collecredThisMounth, setCollecredThisMounth] = useState(0);
+	const [listMouths, setListMouths] = useState([]);
+	const [collectedThisMounth, setCollectedThisMounth] = useState(0);
 
 	useEffect(() => {
 		const getTurnsList = async () => {
@@ -50,10 +56,18 @@ const Dashboard = () => {
 				return [...new Set(dates)];
 			})
 
+			setListMouths(() => { // listar meses
+				const dates = res.map(turn => moment(turn.dateTurn, 'YYYY-MM-DD').format('MMMM YYYY'));
+				return [...new Set(dates)];
+			})
+
 			// TODO: PENDIENTE
-			setCollecredThisMounth(()=> {
-				const dates = res.map(turn => turn.dateTurn);
-				return dates;
+			setCollectedThisMounth(()=> {
+				const currentMounth = moment().format('MM');
+				const filterDates = res.filter(turn => moment(turn.dateTurn, 'YYYY-MM-DD').format('MM') === currentMounth);
+				let totalCollectedThisMounth = 0;
+				filterDates.forEach(turn => totalCollectedThisMounth+=turn.priceShift )
+				return totalCollectedThisMounth;
 			})
 
 			/* Filtros */
@@ -67,13 +81,19 @@ const Dashboard = () => {
 					const datesFiltered = res.filter((turn) => turn.dateTurn === date);
 					return datesFiltered
 				});
+			} else if(isFilteredByMounth){
+				setTurns(() => { // filtro por meses
+					const datesFiltered = res.filter((turn) => moment(turn.dateTurn, 'YYYY-MM-DD').format('MMMM YYYY') === mounth)
+					return datesFiltered;
+				})
 			} else {
-				setTurns(res); // sin filtros
+				setTurns(res);
 			}
 			setLoading(false);
 		}
 		getTurnsList();
-	}, [date , isFiltereByDateTurn, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
+		console.log('first')
+	}, [mounth, date, isFiltereByDateTurn, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
 
 	const handleDeleteTurn = async (docId) => {
 		await deleteTurn(docId);
@@ -105,6 +125,24 @@ const Dashboard = () => {
 		}
 	}
 
+	const handleChangeFilterByMouth = (e) => {
+		setMounth(e.target.value);
+		if(e.target.value !== '' ){
+			setIsFilteredByMounth(true);
+		} else {
+			setIsFilteredByMounth(false);
+		}
+	}
+
+	const copyShiftsToClipBoard = () => {
+		let text = 'Turnos laborales\n';
+		turns.forEach(({placeToShift, dateTurn, admissionTime, departureTime}) => {
+			text+=`Lugar Turno: ${placeToShift}\nFecha: ${moment(dateTurn, 'YYYY-MM-DD').format('DD/MM/YYYY')}\nHora Ingreso: ${moment(admissionTime, 'HH:mm').format('hh:mm A')}\nHora Salida: ${moment(departureTime, 'HH:mm').format('hh:mm A')}\n\n`;
+		})
+		return text;
+	}
+
+
   	return (
 		<HomeWrapper>
 			<div className='dashboard__header'>
@@ -112,13 +150,16 @@ const Dashboard = () => {
 				<div className="card">
 					<div className='card__info'>
 						<p className='card__info-title'>Total recogido este mes</p>
-						<p className='card__info-money'>$106.000 COP</p>
+						<p className='card__info-money'>${collectedThisMounth.toLocaleString('co-CO', {maximumFractionDigits: 1})} COP</p>
 						<p className='card__info-label'>suma total de cada precio de los turnos</p>
 					</div>
-					<button className='card__btn'>
-						<FontAwesomeIcon icon={faBook} className='card__btn-icon'/>
-						<p className='card__btn-label'>Copiar turnos visibles</p>
-					</button>
+
+					<CopyToClipboard text={copyShiftsToClipBoard()}>
+						<button className='card__btn' onClick={() => toast.success('Turnos visibles copiados!')}>
+							<FontAwesomeIcon icon={faBook} className='card__btn-icon'/>
+							<p className='card__btn-label'>Copiar turnos visibles</p>
+						</button>
+					</CopyToClipboard>
 				</div>
 			</div>
 			<main className='main'>
@@ -131,6 +172,7 @@ const Dashboard = () => {
 					<div className='main__btns-filters'>
 						<SelectList className='main__btns-filters-place main__btns-filters-btn' id='placeToShift' title='lugares' handleChange={handleChangeFilterByPlace} data={listPlaces}/>
 						<SelectList className='main__btns-filters-date main__btns-filters-btn' id='dateTurn' title='fechas' handleChange={handleChangeFilterByDate} data={listDates}/>
+						<SelectList className='main__btns-filters-date main__btns-filters-btn' id='mounths' title='mes' handleChange={handleChangeFilterByMouth} data={listMouths}/>
 					</div>
 				</div>
 				<div className="main__turns">
