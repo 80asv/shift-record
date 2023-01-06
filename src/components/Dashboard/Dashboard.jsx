@@ -15,15 +15,15 @@ import './Dashboard.scss'
 
 /**
  * * Sistema de filtro
- * *  Clipboard
+ * * Clipboard
  * * Formateo de horas
  * * Añadir mas informacion de registro de turnos (fecha y hora de registro)
  * * revisar marcas de tiempo
  * * calcular precio de turnos
+ * * Componente loading
+ * * Corregir desbordamiento de los titulos de las tarjetas
  * 
- * TODO: Componente loading
- * TODO: Corregir desbordamiento de los titulos de las tarjetas
- * ? Podemos poner los botones del turno como cabecera solamente y el titulo abajo (flez-direction: column)
+ * TODO: hacerla PWA
  */
 
 const Dashboard = () => {

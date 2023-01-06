@@ -2,6 +2,7 @@ import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import AnimatedBg from "../AnimatedBg/AnimatedBg";
 import './Login.scss'
 
 const Login = () => {
@@ -16,22 +17,24 @@ const Login = () => {
 	}
 
 	return (
-		<div className="login">
-			<div className="login__logo-container">
-				<div className="login__logo">
-					<FontAwesomeIcon icon={faBook} className='login__logo-icon'/>
-					<h1 className="login__h1">Registro de turnos</h1>
+		<AnimatedBg>
+			<div className="login">
+				<div className="login__logo-container">
+					<div className="login__logo">
+						<FontAwesomeIcon icon={faBook} className='login__logo-icon'/>
+						<h1 className="login__h1">Registro de turnos</h1>
+					</div>
+					<p className="login__logo-label">Registre, guarde y tenga control de lo que gana con cada turno laboral que realiza.</p>
 				</div>
-				<p className="login__logo-label">Registre, guarde y tenga control de lo que gana con cada turno laboral que realiza.</p>
+				<div className="login__btn-container">
+					<button className="login__btn" onClick={handleGoogleLogIn}>
+						<img src="/google-icon.svg" alt="Google" className="login__btn-icon"/>
+						<p className="login__btn-label">Continuar con Google</p>
+					</button>
+					<p>By 80asv</p>
+				</div>
 			</div>
-			<div className="login__btn-container">
-				<button className="login__btn" onClick={handleGoogleLogIn}>
-					<img src="/google-icon.svg" alt="Google" className="login__btn-icon"/>
-					<p className="login__btn-label">Continuar con Google</p>
-				</button>
-				<p>By 80asv</p>
-			</div>
-		</div>
+		</AnimatedBg>
 	)
 }
 

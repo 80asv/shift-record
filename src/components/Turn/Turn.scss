@@ -13,6 +13,7 @@
     gap: 0;
     border-radius: 1.0625rem;
     min-height: 346px;
+    min-width: 433px;
     flex-grow: 1;
 
     &.turn-edit{
@@ -35,11 +36,11 @@
         box-sizing: border-box;
         flex-shrink: 0;
         min-height: 208px;
+        margin-top: 1.5625rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-        margin-top: auto;
         background-color: rgba(255, 255, 255, 0);
         overflow: hidden;
         position: relative;
@@ -113,26 +114,27 @@
     &__header {
         flex-shrink: 0;
         width: 100%;
-        height: min-content; /* 43px */
         display: flex;
-        flex-direction: row;
+        flex-direction: column-reverse;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         background-color: rgba(153, 238, 255, 0);
         overflow: hidden;
         position: relative;
         padding: 0px 0px 0px 0px;
         align-content: center;
         flex-wrap: nowrap;
+        gap: 7px;
     }
 
     &__header-btns {
         flex-shrink: 0;
         // width: min-content; /* 149px */
         // height: min-content; /* 43px */
+        width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         background-color: rgba(255, 255, 255, 0);
         align-content: center;
@@ -194,6 +196,7 @@
 
     @media screen and (max-width: 660px) {
         min-height: auto;
+        min-width: auto;
         &__header-place, &__header-place-edit{ font-size: 24px; }
         &__header-btns{
             gap: 5px;
