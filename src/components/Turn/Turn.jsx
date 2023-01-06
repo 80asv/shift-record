@@ -7,6 +7,7 @@ import 'moment/locale/es';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCopy, faPenToSquare, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import RadioBtn from '../RadioBtn/RadioBtn';
+import ToastDeleteTurn from '../ToastDeleteTurn/ToastDeleteTurn';
 
 const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp, priceShift, typeShift, workingHours }) => {
     
@@ -81,16 +82,7 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
 
     const handleConfirmDelete = () => {
         toast((t) => (
-            <div>
-                <h2>¿Estas Seguro de Eliminar este turno?</h2>
-                <div>
-                    <button onClick={() => {
-                        handleDelete();
-						toast.dismiss(t.id);
-					}}>Eliminar</button>
-                    <button onClick={() => toast.dismiss(t.id)}>Cancelar</button>
-                </div>
-            </div>
+            <ToastDeleteTurn handleClick={handleDelete} actionToast={t}/>
         ));
     }
 
@@ -184,15 +176,15 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                             <h2 className='turn__header-place'>{cPlace}</h2>
                             <div className='turn__header-btns'>
                                 <button onClick={handleEditTurn} className='turn__btn edit'>
-                                    <FontAwesomeIcon icon={faPenToSquare}/>
+                                    <FontAwesomeIcon icon={faPenToSquare} className='icon'/>
                                 </button>
                                 <CopyToClipboard text={copyToClipboardValues}>
                                     <button onClick={handleCopyToClipBoard} className='turn__btn copy'>
-                                        <FontAwesomeIcon icon={faCopy}/>
+                                        <FontAwesomeIcon icon={faCopy} className='icon'/>
                                     </button>
                                 </CopyToClipboard>
                                 <button onClick={handleConfirmDelete} className='turn__btn delete'>
-                                    <FontAwesomeIcon icon={faTrash}/>
+                                    <FontAwesomeIcon icon={faTrash} className='icon'/>
                                 </button>
                             </div>
                         </div>

@@ -1,9 +1,10 @@
 import React from 'react'
+import './Loader.scss'
 
-const Loader = () => {
+const Loader = ({height, width}) => {
   return (
-    <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <img src="/spinLoader.svg" alt="Loading..." style={{height: '200px', width: '200px'}}/>
+    <div className='loader'>
+        <img src="/spinLoader.svg" alt="Loading..." style={{height: height, width: width}}/>
     </div>
   )
 }

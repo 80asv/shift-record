@@ -1,0 +1,17 @@
+.loader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width: 200px;
+        height: 200px;
+    }
+    @media screen and (max-width: 41.25rem) {
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    }
+}

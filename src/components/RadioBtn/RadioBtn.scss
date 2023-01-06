@@ -4,10 +4,6 @@
   box-sizing: content-box !important;
 }
 
-.radio-div{
-    margin-left: 5px;
-    margin-top: 10px;
-}
 
 .b-contain input {
   position: absolute;
@@ -19,6 +15,7 @@
   line-height: 1.5;
   font-size: 1rem;
   font-family: inherit;
+  font-weight: normal;
 }
 
 .b-contain {

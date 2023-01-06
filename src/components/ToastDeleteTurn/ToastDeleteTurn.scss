@@ -1,0 +1,31 @@
+.toast{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    &__title{
+        color: var(--color-text);
+        font-weight: 600;
+    }
+    &__btns{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        &-btn{
+            cursor: pointer;
+            padding: 9px;
+            border-radius: 10px;
+        }
+    }
+    &__btns-cancel{
+        background-color: var(--color-red-cancel);
+        border: 2px solid #C44040;
+        color: #C44040;
+    }
+    &__btns-delete{
+        background-color: var(--color-green);
+        color: #4FC440;
+        border: 2px solid #4FC440;
+    }
+}

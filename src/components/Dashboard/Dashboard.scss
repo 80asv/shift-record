@@ -21,18 +21,31 @@
             font-size: 1.5rem;
             font-weight: 500;
             color: var(--color-grey);
+
+            &-name{
+                font-weight: 600;
+            }
+        }
+    }
+
+    @media screen and (max-width: 660px){
+        &__header{
+            flex-direction: column;
+            padding: var(--pading-mb);
+            gap: 25px;
+            &-saludo{ font-size: 1.125rem;}
+            h2{
+                font-size: 1.125rem;
+            }
         }
     }
 }
 .card{
-    width: 21.5625rem;
-    height: min-content; /* 205px */
+    width: 20rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    padding: 0px 0px 0px 0px;
     align-content: center;
     flex-wrap: nowrap;
     gap: 20px;
@@ -87,7 +100,7 @@
         background-color: #ffffff;
         overflow: hidden;
         position: relative;
-        padding: 0px 0px 0px 0px;
+        padding: 20px;
         align-content: center;
         flex-wrap: nowrap;
         gap: 15px;
@@ -129,6 +142,18 @@
         letter-spacing: 0px;
         line-height: 1.2;
     }
+
+    @media screen and (max-width: 660px) {
+        width: 100%;
+        gap: 10px;
+        &__info{
+            gap: 8px;
+            height: auto;
+            padding: 20px 0;
+        }
+        &__info-title{ font-size: 16px; }
+        &__info-money{ font-size: 1.625rem; }
+    }
 }
 .main{
     box-sizing: border-box;
@@ -152,13 +177,11 @@
     }
 
     &__btns{
-        height: 2.1875rem;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         overflow: hidden;
-        padding: 0px 0px 0px 0px;
         align-content: center;
         flex-wrap: nowrap;
         gap: 1rem;
@@ -166,27 +189,22 @@
     &__btns-agregarturno{
         color: var(--color-white); 
         flex-shrink: 0;
-        height: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         background-color: #579bfa;
-        padding: 0 15px;
         overflow: hidden;
         position: relative;
         align-content: center;
         flex-wrap: nowrap;
         gap: 10px;
-        border-radius: 11px; 
-
-        p{
-            flex-shrink: 0;
-        }
+        border-radius: 11px;
+        padding: 8px 10px;
+        p{ flex-shrink: 0; }
     }
     &__btns-filters{
         display: flex;
-        height: 100%;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -201,11 +219,16 @@
         align-items: flex-start;
         gap: 24px;
         flex-wrap: wrap;
-        // overflow: hidden;
-        // position: relative;
-        // align-content: center;
-        // display: grid;
-        // grid-template-columns: repeat(auto-fit, minmax(500px, 30rem));
-        // grid-gap: 10px;
+    }
+
+    @media screen and (max-width: 660px) {
+        padding: var(--pading-mb);
+        &__misturnos{ font-size: 1.6875rem; }
+        &__btns-filters{ gap: 10px; }
+        &__btns{ gap: 10px}
+        &__btns-agregarturno{
+            gap: 6px;
+            p{ font-size: 14px; } 
+        }
     }
 }

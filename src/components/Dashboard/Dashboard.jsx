@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import { toast } from 'react-hot-toast'
+import { toast, Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { deleteTurn, getTurns, updateTurn } from '../../db/firebase'
@@ -14,14 +14,16 @@ import Turn from '../Turn/Turn'
 import './Dashboard.scss'
 
 /**
- * TODO: Sistema de filtro
- * TODO: Clipboard
- * TODO: Componente loading
- * TODO: Formateo de horas
- * TODO: Añadir mas informacion de registro de turnos (fecha y hora de registro)
+ * * Sistema de filtro
+ * *  Clipboard
+ * * Formateo de horas
+ * * Añadir mas informacion de registro de turnos (fecha y hora de registro)
+ * * revisar marcas de tiempo
+ * * calcular precio de turnos
  * 
- * TODO: revisar marcas de tiempo
- * TODO: calcular precio de turnos
+ * TODO: Componente loading
+ * TODO: Corregir desbordamiento de los titulos de las tarjetas
+ * ? Podemos poner los botones del turno como cabecera solamente y el titulo abajo (flez-direction: column)
  */
 
 const Dashboard = () => {
@@ -136,6 +138,7 @@ const Dashboard = () => {
 
 	const copyShiftsToClipBoard = () => {
 		let text = 'Turnos laborales\n\n';
+		if(turns.length <= 0) return;
 		turns.forEach(({placeToShift, dateTurn, admissionTime, departureTime}) => {
 			text+=`Lugar Turno: ${placeToShift}\nFecha: ${moment(dateTurn, 'YYYY-MM-DD').format('DD/MM/YYYY')}\nHora Ingreso: ${moment(admissionTime, 'HH:mm').format('hh:mm A')}\nHora Salida: ${moment(departureTime, 'HH:mm').format('hh:mm A')}\n\n`;
 		})
@@ -146,7 +149,12 @@ const Dashboard = () => {
   	return (
 		<HomeWrapper>
 			<div className='dashboard__header'>
-				<h2><p className='dashboard__header-saludo'>Bienvenid@</p>{user.displayName}</h2>
+				<h2>
+					<p className='dashboard__header-saludo'>Bienvenid@</p>
+					<p className='dashboard__header-saludo-name'>
+						{user.displayName}
+					</p>
+				</h2>
 				<div className="card">
 					<div className='card__info'>
 						<p className='card__info-title'>Total recogido este mes</p>
@@ -176,6 +184,16 @@ const Dashboard = () => {
 					</div>
 				</div>
 				<div className="main__turns">
+					{
+						turns.length <= 0 && !loading &&
+						<p style={{
+							fontSize: '22px', 
+							color: 'var(--color-grey)', 
+							width: '100%',
+							display: 'flex',
+							justifyContent: 'center'
+						}}>No hay turnos que mostrar</p> 
+					}
 					{
 						turns.map((turn) => <Turn
 							key={turn.id}

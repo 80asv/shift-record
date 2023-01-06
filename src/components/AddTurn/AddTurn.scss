@@ -1,5 +1,7 @@
 .form {
 
+    padding: var(--pading-mb);
+
     label{
         flex-shrink: 0;
         white-space: pre;
@@ -9,6 +11,7 @@
         font-size: 1.0625rem;
         letter-spacing: 0px;
         line-height: 1.2;
+        font-weight: 700;
     }
 
     flex-shrink: 0;
@@ -24,7 +27,7 @@
         box-sizing: border-box;
         flex-shrink: 0;
         margin-top: 2rem;
-        width: 28.6875rem;
+        max-width: 28.6875rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -74,12 +77,15 @@
         gap: 10px;
 
         &-type-shift{
-            
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
             &-radiobtn{
                 display: flex;
                 flex-direction: row;
                 gap: 25px;
                 width: 100%;
+                flex-wrap: wrap;
             }
         }
 
@@ -121,7 +127,7 @@
         overflow: hidden;
         flex: 1 0 0px;
         align-content: center;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 10px;
 
         &-admissiontime, &-departuretime{
@@ -251,6 +257,34 @@
         color: var(--color-blue);
         font-size: 17px;
         line-height: 1.2;
+    }
+
+    @media screen and (max-width: 41.25rem) {
+
+        label{
+            font-size: 16px;
+        }
+
+        &__card{
+            padding: 35px;
+            gap: 1.5rem;
+        }
+
+        &__card-title{
+            font-size: 25px;
+        }
+
+        &__card-inputs{
+            &-type-shift{
+                &-radiobtn{
+                    gap: 10px;
+                }
+            }
+        }
+
+        &__card-footer-info-priceshift{
+            font-size: 14px;
+        }
     }
 }
 

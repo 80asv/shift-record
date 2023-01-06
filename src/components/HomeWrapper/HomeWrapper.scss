@@ -14,10 +14,9 @@
     flex-wrap: nowrap;
 
     &__btn-cerrarsesion {
-        width: 8.4375rem;
         background-color: var(--color-light-blue);
         color: var(--color-blue);
-        padding: 0.625rem;
+        padding: 12px;
         border-radius: var(--border-radius);
         border: 2px solid var(--color-blue);
         cursor: pointer;
@@ -40,16 +39,18 @@
         font-weight: 600;
         color: var(--color-text);
         font-size: 1.5rem;
-        letter-spacing: -1.5px;
     }
 
     &__logo-icon {
         font-size: 2rem;
     }
 
-    @media screen and (max-width: 32.5rem){
+    @media screen and (max-width: 660px){
         padding: var(--pading-mb);
         &__logo-h1{ font-size: 18px; }
         &__logo-icon{ font-size: 1.5rem; }
+        &__btn-cerrarsesion{
+            padding: 8px;
+        }
     }
 }
