@@ -9,7 +9,6 @@
         font-weight: 500;
         color: var(--color-text);
         font-size: 1.0625rem;
-        letter-spacing: 0px;
         line-height: 1.2;
         font-weight: 700;
     }
@@ -32,7 +31,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 45px 35px 45px 35px;
+        padding: 2.8125rem 2.1875rem;
         box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
         background-color: var(--color-white);
         overflow: hidden;
@@ -62,7 +61,7 @@
         overflow: hidden;
         align-content: flex-start;
         flex-wrap: nowrap;
-        gap: 95px;
+        gap: 5.9375rem;
     }
 
     &__card-inputs {
@@ -74,16 +73,16 @@
         align-items: flex-start;
         align-content: flex-start;
         flex-wrap: nowrap;
-        gap: 10px;
+        gap: 0.625rem;
 
         &-type-shift{
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 0.5625rem;
             &-radiobtn{
                 display: flex;
                 flex-direction: row;
-                gap: 25px;
+                gap: 1.5625rem;
                 width: 100%;
                 flex-wrap: wrap;
             }
@@ -100,15 +99,14 @@
             position: relative;
             align-content: flex-start;
             flex-wrap: nowrap;
-            gap: 9px;
+            gap: 0.5625rem;
             width: 100%;
 
             input{ // -2376
                 box-sizing: border-box;
                 flex-shrink: 0;
                 width: 100%;
-                height: 46px;
-                padding: 0px 20px 0px 20px;
+                padding: 0.75rem 1.25rem;
                 box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
                 background-color: #ffffff;
                 border-radius: 11px;
@@ -128,7 +126,7 @@
         flex: 1 0 0px;
         align-content: center;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 0.625rem;
 
         &-admissiontime, &-departuretime{
             flex-shrink: 0;
@@ -145,11 +143,10 @@
                 box-sizing: border-box;
                 flex-shrink: 0;
                 width: 100%;
-                height: 46px;
-                padding: 0px 20px 0px 20px;
+                padding: 0.6875rem 1.25rem;
                 box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
                 background-color: #ffffff;
-                border-radius: 11px;
+                border-radius: 0.6875rem;
                 border: 0.1875rem solid var(--color-blue);
             }
         }
@@ -164,12 +161,11 @@
         align-items: flex-start;
         align-content: flex-start;
         flex-wrap: nowrap;
-        gap: 20px;
+        gap: 1.25rem;
     }
 
     &__card-footer-btns {
         flex-shrink: 0;
-        height: 43px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -177,11 +173,11 @@
         position: relative;
         align-content: center;
         flex-wrap: nowrap;
-        gap: 10px;
+        gap: 0.625rem;
 
         .btn-registrar{
-            width: 100px;
-            height: 43px;
+            width: 6.25rem;
+            height: 2.6875rem;
             background-color: var(--color-blue);
             border-radius: 10px;
             color: var(--color-white);
@@ -192,12 +188,12 @@
 
         .btn-volver{
             flex-shrink: 0;
-            width: 100px;
-            height: 43px;
+            width: 6.25rem;
+            height: 2.6875rem;
             color: var(--color-blue);
             background-color: var(--color-light-blue);
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             display: flex;
@@ -215,7 +211,7 @@
         align-items: flex-start;
         align-content: flex-start;
         flex-wrap: nowrap;
-        gap: 10px;
+        gap: 0.625rem;
     }
 
     &__card-footer-info-message {
@@ -232,7 +228,7 @@
 
         .icon {
             width: auto;
-            font-size: 21px;
+            font-size: 1.3125rem;
             color: var(--color-red);
         }
 
@@ -245,7 +241,7 @@
             position: relative;
             font-weight: 500;
             color: var(--color-red);
-            font-size: 12px;
+            font-size: 0.75rem;
             line-height: 1.2;
         }
     }
@@ -255,40 +251,40 @@
         position: relative;
         font-weight: 500;
         color: var(--color-blue);
-        font-size: 17px;
+        font-size: 1.0625rem;
         line-height: 1.2;
     }
 
     @media screen and (max-width: 41.25rem) {
 
         label{
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         &__card{
-            padding: 35px;
+            padding: 2.1875rem;
             gap: 1.5rem;
             margin-top: var(--pading-mb);
         }
 
         &__card-container{
-            gap: 45px;
+            gap: 2.8125rem;
         }
 
         &__card-title{
-            font-size: 25px;
+            font-size: 1.5625rem;
         }
 
         &__card-inputs{
             &-type-shift{
                 &-radiobtn{
-                    gap: 10px;
+                    gap: 0.625rem;
                 }
             }
         }
 
         &__card-footer-info-priceshift{
-            font-size: 14px;
+            font-size: 0.875rem;
         }
     }
 }

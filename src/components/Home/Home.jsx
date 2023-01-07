@@ -5,7 +5,6 @@ const Home = () => {
 
   const { user } = useAuth();
 
-  
   if(user){
     return <Navigate to='/dashboard'/>
   } else{

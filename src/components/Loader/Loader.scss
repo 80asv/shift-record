@@ -5,13 +5,13 @@
     align-items: center;
 
     img{
-        width: 200px;
-        height: 200px;
+        width: 12.5rem;
+        height: 12.5rem;
     }
     @media screen and (max-width: 41.25rem) {
         img{
-            width: 100px;
-            height: 100px;
+            width: 6.25rem;
+            height: 6.25rem;
         }
     }
 }

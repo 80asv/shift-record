@@ -1,8 +1,8 @@
 .toast{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+    gap: 0.625rem;
+    padding: 0.625rem;
     &__title{
         color: var(--color-text);
         font-weight: 600;
@@ -14,18 +14,18 @@
 
         &-btn{
             cursor: pointer;
-            padding: 9px;
-            border-radius: 10px;
+            padding: 0.5625rem;
+            border-radius: 0.625rem;
         }
     }
     &__btns-cancel{
         background-color: var(--color-red-cancel);
-        border: 2px solid #C44040;
+        border: 0.125rem solid #C44040;
         color: #C44040;
     }
     &__btns-delete{
         background-color: var(--color-green);
         color: #4FC440;
-        border: 2px solid #4FC440;
+        border: 0.125rem solid #4FC440;
     }
 }

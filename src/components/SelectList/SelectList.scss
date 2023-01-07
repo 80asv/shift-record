@@ -3,15 +3,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 10px;
+    padding: 0.5rem 0.625rem;
     background-color: var(--color-white);
     align-content: center;
     border-radius: var(--border-radius);
-    border: 2px solid var(--color-grey);
+    border: 0.125rem solid var(--color-grey);
     color: var(--color-grey);
     font-weight: 500;
 
-    @media screen and (max-width: 660px) {
-        font-size: 14px;
+    @media screen and (max-width: 41.25rem) {
+        font-size: 0.875rem;
     }
 }

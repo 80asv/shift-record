@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 30px 30px 30px 30px;
+    padding: 1.875rem;
     box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
     background-color: var(--color-white);
     overflow: hidden;
@@ -12,8 +12,8 @@
     flex-wrap: nowrap;
     gap: 0;
     border-radius: 1.0625rem;
-    min-height: 346px;
-    min-width: 433px;
+    min-height: 21.625rem;
+    min-width: 27.0625rem;
     flex-grow: 1;
 
     &.turn-edit{
@@ -28,24 +28,21 @@
     &__footer-edit{
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-top: 20px;
+        gap: 0.625rem;
+        margin-top: 1.25rem;
     }
 
     &__body {
         box-sizing: border-box;
         flex-shrink: 0;
-        min-height: 208px;
+        min-height: 13rem;
         margin-top: 1.5625rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
         background-color: rgba(255, 255, 255, 0);
-        overflow: hidden;
-        position: relative;
         align-content: flex-start;
-        flex-wrap: nowrap;
     }
 
     &__body-aditionalinfo {
@@ -54,10 +51,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        overflow: hidden;
-        position: relative;
         align-content: flex-start;
-        flex-wrap: nowrap;
         gap: 10px;
 
         &-price{
@@ -67,10 +61,8 @@
             font-weight: 600;
             font-style: normal;
             font-family: "Albert Sans", sans-serif;
-            color: #579bfa;
-            font-size: 18px;
-            letter-spacing: 0px;
-            line-height: 1.2;
+            color: var(--color-blue);
+            font-size: 1.125rem;
         }
 
         &-inforegister{
@@ -80,10 +72,8 @@
             font-weight: 300;
             font-style: normal;
             font-family: "Albert Sans", sans-serif;
-            color: #292d5c;
-            font-size: 15px;
-            letter-spacing: 0px;
-            line-height: 1.2;
+            color: var(--color-text);
+            font-size: 0.9375rem;
         }
     }
 
@@ -93,20 +83,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        overflow: hidden;
-        position: relative;
+        
         align-content: flex-start;
         flex-wrap: nowrap;
-        gap: 15px;
+        gap: 0.9375rem;
 
         p{
-            font-size: 18px;
+            font-size: 1.125rem;
         }
 
         &-edit{
             p{
                 display: flex;
-                gap: 7px;
+                gap: 0.4375rem;
             }
         }
     }
@@ -118,19 +107,12 @@
         flex-direction: column-reverse;
         justify-content: space-between;
         align-items: flex-start;
-        background-color: rgba(153, 238, 255, 0);
-        overflow: hidden;
-        position: relative;
-        padding: 0px 0px 0px 0px;
         align-content: center;
-        flex-wrap: nowrap;
-        gap: 7px;
+        gap: 0.4375rem;
     }
 
     &__header-btns {
         flex-shrink: 0;
-        // width: min-content; /* 149px */
-        // height: min-content; /* 43px */
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -138,38 +120,32 @@
         align-items: center;
         background-color: rgba(255, 255, 255, 0);
         align-content: center;
-        flex-wrap: nowrap;
-        gap: 10px;
+        gap: 0.625rem;
 
         .turn__btn{
             cursor: pointer;
             box-sizing: border-box;
             flex-shrink: 0;
-            width: 43px;
-            height: 43px;
+            width: 2.6875rem;
+            height: 2.6875rem;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             background-color: #f3f5ff;
-            overflow: hidden;
-            position: relative;
-            padding: 0px 0px 0px 0px;
             align-content: center;
-            flex-wrap: nowrap;
-            gap: 0;
             aspect-ratio: 1 / 1;
-            border-radius: 10px;
-            border: 2px solid rgba(41, 45, 92, 0.12);
+            border-radius: 0.625rem;
+            border: 0.125rem solid rgba(41, 45, 92, 0.12);
 
             &.confirm{
                 background-color: var(--color-green);
                 color: #4FC440;
-                border: 2px solid #4FC440;
+                border: 0.125rem solid #4FC440;
             }
             &.cancel{
                 background-color: var(--color-red-cancel);
-                border: 2px solid #C44040;
+                border: 0.125rem solid #C44040;
                 color: #C44040;
             }
         }
@@ -177,57 +153,47 @@
 
     &__header-place, &__header-place-edit {
         flex-shrink: 0;
-        // width: auto; /* 208px */
-        // height: auto; /* 42px */
         white-space: pre;
-        position: relative;
         font-weight: 700;
         font-style: normal;
         font-family: "Albert Sans", sans-serif;
-        color: #292d5c;
-        font-size: 35px;
-        letter-spacing: 0px;
-        line-height: 1.2;
+        color: var(--color-text);
+        font-size: 2.1875rem;
 
         &-edit{
             width: 75%;
         }
     }
 
-    @media screen and (max-width: 660px) {
+    @media screen and (max-width: 41.25rem) {
         min-height: auto;
         min-width: auto;
-        &__header-place, &__header-place-edit{ font-size: 24px; }
+        &__header-place, &__header-place-edit{ font-size: 1.5rem; }
         &__header-btns{
-            gap: 5px;
+            gap: 0.3125rem;
             .turn__btn{
-                width: 35px;
-                height: 35px;
+                width: 2.1875rem;
+                height: 2.1875rem;
                 .icon{
-                    font-size: 15px;
+                    font-size: 0.9375rem;
                 }
             }
         }
-
         &__body{
             margin-top: 1.5625rem;
             min-height: auto;
             justify-content: flex-start;
-            gap: 35px;
+            gap: 2.1875rem;
         }
-
         &__body-dates, &__body-dates-edit{
-            gap: 12px;
-            p{ font-size: 14px; }
+            gap: 0.75rem;
+            p{ font-size: 0.875rem; }
         }
-
         &__body-aditionalinfo{
-            &-price{ font-size: 14px; }
-            &-inforegister{ font-size: 12px;}
+            &-price{ font-size: 0.875rem; }
+            &-inforegister{ font-size: 0.75rem;}
         }
-
         &__header-place, &__header-place-edit{
-
             &-edit{
                 width: 60%;
             }
