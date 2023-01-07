@@ -21,7 +21,7 @@ function App() {
               <Dashboard/>
             </ProtectedRoute>
           }/>
-          <Route path="/login" element={<Login/>}/>{/* inicio de sesion */}
+          <Route path="/login" element={<Login/>}/>
           <Route path="dashboard/agregar-turno" element={
             <ProtectedRoute>
               <AddTurn/>

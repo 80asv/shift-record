@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/AuthContext';
-import { existUserName, getUserInfo, registerNewUser, updateUser, userExists } from '../../db/firebase';
-import AnimatedBg from '../AnimatedBg/AnimatedBg';
+import { existUserName, updateUser } from '../../db/firebase';
 import './ChooseUsername.scss'
-
 
 const ChooseUsername = () => {
 
