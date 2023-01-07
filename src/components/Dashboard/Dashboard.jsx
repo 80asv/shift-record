@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import { toast, Toaster } from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { deleteTurn, getTurns, updateTurn } from '../../db/firebase'
@@ -12,19 +12,6 @@ import Loader from '../Loader/Loader'
 import SelectList from '../SelectList/SelectList'
 import Turn from '../Turn/Turn'
 import './Dashboard.scss'
-
-/**
- * * Sistema de filtro
- * * Clipboard
- * * Formateo de horas
- * * Añadir mas informacion de registro de turnos (fecha y hora de registro)
- * * revisar marcas de tiempo
- * * calcular precio de turnos
- * * Componente loading
- * * Corregir desbordamiento de los titulos de las tarjetas
- * 
- * TODO: hacerla PWA
- */
 
 const Dashboard = () => {
 	const { user } = useAuth();
