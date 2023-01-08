@@ -1,7 +1,7 @@
 {
-  "background-color": "#579BFA",
+  "background_color": "#ffffff",
   "categories": ["productivy", "utilities"],
-  "despcription": "Esta es una app que te ayudara a gestionar tus turnos laborales",
+  "description": "Esta es una app que te ayudara a gestionar tus turnos laborales",
   "dir": "ltr",
   "display_override": ["standalone", "fullscreen"],
   "display": "standalone",
