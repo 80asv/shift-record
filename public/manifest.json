@@ -94,7 +94,8 @@
     {
       "src": "regitur512.png",
       "sizes": "512x512",
-      "type": "image/png" 
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "regitur1024.png",
@@ -107,6 +108,7 @@
   "orientation": "portrait",
   "prefer_related_application": false,
   "scope": "/",
+  "start_url": "https://regitur.vercel.app/",
   "short_name": "Regitur",
   "theme_color": "#ffffff"
 }
