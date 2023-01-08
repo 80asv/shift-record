@@ -14,7 +14,7 @@ const HomeWrapper = ({ children }) => {
 	const [isReadyForInstall, setIsReadyForInstall] = React.useState(false);
 
 	useEffect(() => {
-	window.addEventListener("beforeinstallprompt", (event) => {
+		window.addEventListener("beforeinstallprompt", (event) => {
 		// Prevent the mini-infobar from appearing on mobile.
 		event.preventDefault();
 		console.log("👍", "beforeinstallprompt", event);
