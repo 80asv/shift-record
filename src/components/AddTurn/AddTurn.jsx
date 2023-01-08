@@ -128,7 +128,7 @@ const AddTurn = () => {
 							<div className='form__card-inputs-type-shift'>
 								<label>Horario de turno</label>
 								<div className='form__card-inputs-type-shift-radiobtn'>
-									<RadioBtn name='typeShift' title='normal' handleChange={handleChange} value='normal'/>
+									<RadioBtn name='typeShift' title='completo' handleChange={handleChange} value='normal'/>
 									<RadioBtn name='typeShift' title='medio' handleChange={handleChange} value='medio'/>
 									<RadioBtn name='typeShift' title='festivo' handleChange={handleChange} value='festivo'/>
 								</div>

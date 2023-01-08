@@ -11,6 +11,10 @@
     background-color: var(--color-white);
     align-content: center;
     
+    &__btns{
+        display: flex;
+        gap: 20px;
+    }
 
     &__btn-cerrarsesion {
         background-color: var(--color-light-blue);
@@ -46,10 +50,10 @@
 
     @media screen and (max-width: 41.25rem){
         padding: var(--pading-mb);
+        &__btns{
+            gap: 10px;
+        }
         &__logo-h1{ font-size: 1.125rem; }
         &__logo-icon{ font-size: 1.5rem; }
-        &__btn-cerrarsesion{
-            padding: 0.5rem;
-        }
     }
 }
