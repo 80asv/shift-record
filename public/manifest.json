@@ -1,25 +1,112 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "background-color": "#579BFA",
+  "categories": ["productivy", "utilities"],
+  "despcription": "Esta es una app que te ayudara a gestionar tus turnos laborales",
+  "dir": "ltr",
+  "display_override": ["standalone", "fullscreen"],
+  "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "regitur20.png",
+      "sizes": "20x20",
+      "type": "image/png" 
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "regitur29.png",
+      "sizes": "29x29",
+      "type": "image/png" 
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "regitur40.png",
+      "sizes": "40x40",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur50.png",
+      "sizes": "50x50",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur57.png",
+      "sizes": "57x57",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur72.png",
+      "sizes": "72x72",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur76.png",
+      "sizes": "76x76",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur80.png",
+      "sizes": "80x80",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur87.png",
+      "sizes": "87x87",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur100.png",
+      "sizes": "100x100",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur114.png",
+      "sizes": "114x114",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur120.png",
+      "sizes": "120x120",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur144.png",
+      "sizes": "144x144",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur150.png",
+      "sizes": "150x150",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur167.png",
+      "sizes": "167x167",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur216.png",
+      "sizes": "216x216",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur228.png",
+      "sizes": "228x228",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur512.png",
+      "sizes": "512x512",
+      "type": "image/png" 
+    },
+    {
+      "src": "regitur1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png" 
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "lang": "es-CO",
+  "name": "Registro de turnos",
+  "orientation": "portrait",
+  "prefer_related_application": false,
+  "scope": "/",
+  "short_name": "Regitur",
+  "theme_color": "#ffffff"
 }
