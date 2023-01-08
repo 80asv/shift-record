@@ -14,18 +14,18 @@ const HomeWrapper = ({ children }) => {
 	const [isReadyForInstall, setIsReadyForInstall] = React.useState(false);
 
 	useEffect(() => {
-		window.addEventListener("beforeinstallprompt", (event) => {
-			// Prevent the mini-infobar from appearing on mobile.
-			event.preventDefault();
-			console.log("👍", "beforeinstallprompt", event);
-			// Stash the event so it can be triggered later.
-			window.deferredPrompt = event;
-			// Remove the 'hidden' class from the install button container.
-			setIsReadyForInstall(true);
-		});
+	window.addEventListener("beforeinstallprompt", (event) => {
+		// Prevent the mini-infobar from appearing on mobile.
+		event.preventDefault();
+		console.log("👍", "beforeinstallprompt", event);
+		// Stash the event so it can be triggered later.
+		window.deferredPrompt = event;
+		// Remove the 'hidden' class from the install button container.
+		setIsReadyForInstall(true);
+	});
 	}, []);
 
-	const handleDownloadApp = async () => {
+	async function downloadApp() {
 		console.log("👍", "butInstall-clicked");
 		const promptEvent = window.deferredPrompt;
 		if (!promptEvent) {
@@ -45,6 +45,7 @@ const HomeWrapper = ({ children }) => {
 		setIsReadyForInstall(false);
 	}
 
+
     const handleLogout = async () => {
         try {
           await logout();
@@ -60,7 +61,7 @@ const HomeWrapper = ({ children }) => {
 				<FontAwesomeIcon icon={faBook} className='header__logo-icon'/>
 				<h1 className='header__logo-h1'>Registro de turnos</h1>
 			</div>
-			{isReadyForInstall && <button onClick={handleDownloadApp}>descargar</button>}
+			<button onClick={downloadApp}>DESCARGAR</button>
 			<button className='header__btn-cerrarsesion' onClick={handleLogout}>
 				{(width >= 660) ? 'Cerrar sesión' : <FontAwesomeIcon icon={faArrowRightFromBracket}/> }
 			</button>
