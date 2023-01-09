@@ -8,6 +8,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
+import { motion } from 'framer-motion'
 import 'moment/locale/es';
 import RadioBtn from '../RadioBtn/RadioBtn';
 import './AddTurn.scss';
