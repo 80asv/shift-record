@@ -14,4 +14,10 @@
     @media screen and (max-width: 41.25rem) {
         font-size: 0.875rem;
     }
+
+    &.active{
+        border: 0.125rem solid var(--color-blue);
+        background-color: var(--color-light-blue);
+        color: var(--color-blue);
+    }
 }

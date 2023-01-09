@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCopy, faPenToSquare, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import RadioBtn from '../RadioBtn/RadioBtn';
 import ToastDeleteTurn from '../ToastDeleteTurn/ToastDeleteTurn';
+import { motion } from 'framer-motion'
 
-const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp, priceShift, typeShift, workingHours }) => {
+const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp, priceShift, typeShift, workingHours, variants }) => {
     
     moment.locale('es');
 
@@ -110,6 +111,11 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     const formatTimestamp = (timeStamp) => {
         return moment(timeStamp, 'MMMM Do YYYY, h:mm:ss a').format('D/MM/YY');
     }
+
+    const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 }
+	}
     
     return (
         <div id={id} className={`turn ${isEditable ? 'turn-edit' : ''}`}>

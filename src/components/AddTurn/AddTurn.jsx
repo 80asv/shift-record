@@ -10,6 +10,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import 'moment/locale/es';
 import RadioBtn from '../RadioBtn/RadioBtn';
+import { AnimatePresence, motion } from 'framer-motion'
 import './AddTurn.scss';
 
 const initialForm = {
@@ -102,7 +103,13 @@ const AddTurn = () => {
 
 	return (
 		<HomeWrapper>
-			<div className='form'>
+			
+			<motion.div 
+				className='form'
+				transition={{ duration: .4, ease: 'easeOut'}}
+				initial={{opacity: 0, y: 100}}
+				animate={{opacity: 1, y: 1}}
+			>
 				<form className='form__card' onSubmit={handleSubmit}>
 					<h2 className='form__card-title'>Registrar turno</h2>
 					<div className='form__card-container'>
@@ -150,7 +157,7 @@ const AddTurn = () => {
 						</div>
 					</div>
 				</form>
-			</div>
+			</motion.div>
 			<Toaster/>
 		</HomeWrapper>
 	)
