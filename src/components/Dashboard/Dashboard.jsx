@@ -1,6 +1,5 @@
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
@@ -12,7 +11,6 @@ import HomeWrapper from '../HomeWrapper/HomeWrapper'
 import Loader from '../Loader/Loader'
 import SelectList from '../SelectList/SelectList'
 import Turn from '../Turn/Turn'
-import { motion } from 'framer-motion'
 import './Dashboard.scss'
 
 const Dashboard = () => {
@@ -83,7 +81,6 @@ const Dashboard = () => {
 			setLoading(false);
 		}
 		getTurnsList();
-		console.log('first')
 	}, [mounth, /* date, isFiltereByDateTurn */, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
 
 	const handleDeleteTurn = async (docId) => {

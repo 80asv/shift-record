@@ -10,7 +10,6 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import 'moment/locale/es';
 import RadioBtn from '../RadioBtn/RadioBtn';
-import { AnimatePresence, motion } from 'framer-motion'
 import './AddTurn.scss';
 
 const initialForm = {

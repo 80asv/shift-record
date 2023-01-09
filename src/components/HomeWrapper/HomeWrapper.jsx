@@ -60,8 +60,7 @@ const HomeWrapper = ({ children }) => {
 			</div>
 			
 			<div className='header__btns'>
-				{/* {isReadyForInstall && <DownloadAppBtn handleClick={downloadApp}/>}	 */}
-				<DownloadAppBtn handleClick={downloadApp}/>
+				{isReadyForInstall && <DownloadAppBtn handleClick={downloadApp}/>}	
 				<button className='header__btn-cerrarsesion' onClick={handleLogout}>
 					{(width >= 660) ? 'Cerrar sesión' : <FontAwesomeIcon icon={faArrowRightFromBracket}/> }
 				</button>
