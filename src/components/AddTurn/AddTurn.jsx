@@ -38,9 +38,14 @@ const AddTurn = () => {
 			return (date1.diff(date2, 'hours') * (-1));
 		})
 		setPriceShift(() => {
-			const NORMAL = 34573;
-			const MEDIUM = 23073;
-			const FESTIVE = 51823;
+			const MINIMUM_SALARY = 1300606;
+            const NORMAL = MINIMUM_SALARY/30;
+            const MEDIUM = (MINIMUM_SALARY - (0.3346 * MINIMUM_SALARY))/30;
+            const FESTIVE = (MINIMUM_SALARY + (0.499 * MINIMUM_SALARY))/30;
+
+			// const NORMAL = 34573;
+			// const MEDIUM = 23073;
+			// const FESTIVE = 51823;
 
 			if(turn.admissionTime === '' || turn.departureTime === ''){
 				return 0;
