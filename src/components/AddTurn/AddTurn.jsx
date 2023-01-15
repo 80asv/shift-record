@@ -12,6 +12,7 @@ import { motion } from 'framer-motion'
 import 'moment/locale/es';
 import RadioBtn from '../RadioBtn/RadioBtn';
 import './AddTurn.scss';
+import { toast as toasty, ToastContainer } from 'react-toastify';
 
 const initialForm = {
 	placeToShift: '',
@@ -75,12 +76,28 @@ const AddTurn = () => {
 		e.preventDefault();
 		try {
 			if(containsEmptyValues(turn)){
-				toast.error('Rellena todos los campos');
+				toasty.error('Rellena todos los campos', {
+					position: "top-right",
+					autoClose: 1500,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
+				});
 				return;
 			} else {
 				addTurn();
-				toast('Turno Registrado con Exito', {
-					icon: '🎉',
+				toasty.success('¡Turno registrado con éxito!', {
+					position: "top-right",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "colored",
 				});
 			}
 		} catch (error) {
@@ -159,6 +176,7 @@ const AddTurn = () => {
 				</form>
 			</motion.div>
 			<Toaster/>
+			<ToastContainer/>
 		</HomeWrapper>
 	)
 }

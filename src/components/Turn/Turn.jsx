@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCopy, faPenToSquare, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import RadioBtn from '../RadioBtn/RadioBtn';
 import ToastDeleteTurn from '../ToastDeleteTurn/ToastDeleteTurn';
-import { motion } from 'framer-motion'
+import { toast as toasty, ToastContainer } from 'react-toastify';
 
-const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp, priceShift, typeShift, workingHours, variants }) => {
+const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDelete, onEdit, docId, timeStamp, priceShift, typeShift, workingHours }) => {
     
     moment.locale('es');
 
@@ -78,7 +78,16 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
             typeShift: cTypeShift
         }
         onEdit(docId, turnEdited);
-        toast.success('Turno actualizado!');
+        toasty.info('Turno actualizado', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
     }
 
     const handleConfirmDelete = () => {
@@ -87,7 +96,20 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
         ));
     }
 
-    const handleDelete = () => onDelete(docId);
+    const handleDelete = () => {
+        onDelete(docId);
+        toasty.info('El turno ha sido eliminado', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    };
+
     const handleCancelEdit = () => {
         setCPlace(placeToShift);
         setCDate(dateTurn);
@@ -100,7 +122,16 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     };
 
     const handleCopyToClipBoard = () => {
-        toast.success('¡Copiado al portapapeles!');
+        toasty.success('Copiado al portapapeles', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
 
     const calculateTimeTravel = (time) => {
@@ -111,11 +142,6 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
     const formatTimestamp = (timeStamp) => {
         return moment(timeStamp, 'MMMM Do YYYY, h:mm:ss a').format('D/MM/YY');
     }
-
-    const item = {
-		hidden: { opacity: 0 },
-		show: { opacity: 1 }
-	}
     
     return (
         <div id={id} className={`turn ${isEditable ? 'turn-edit' : ''}`}>
@@ -209,6 +235,7 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
                 )
             }
             <Toaster/>
+            <ToastContainer/>
         </div>
     )
 }

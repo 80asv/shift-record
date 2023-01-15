@@ -6,8 +6,10 @@ import {
     onAuthStateChanged,
     signOut
 } from 'firebase/auth'
-import { auth, getUserInfo, registerNewUser, userExists } from '../db/firebase';
+import { getToken } from "firebase/messaging";
+import { auth, getUserInfo, registerNewUser, userExists, messaging } from '../db/firebase';
 import { useNavigate } from "react-router";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const AuthContext = createContext();
@@ -26,12 +28,24 @@ export function AuthProvider({ children }){
     const navigate = useNavigate();
 
     const signUp = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+
     const logout = () => signOut(auth);
+
+    const enableNotifications = async () => {
+        try {
+            const token = await getToken(
+                messaging,
+                { vapidKey: 'BKBygwpLcuKdHnmVCiTRPf89carHYn3Zz7w1ZCnj873Is2YRofY5otJ4niew338Jtl_oP_D2hm5FMDy3n2W0rNk' }
+            ).catch( error => console.log('hubo un error al generar el token', error));
+            return token
+        } catch (error) { console.log('ocurrio un error al generar el token') }
+    }
 
     const logInWithGoogle = async () => {
         const googleProvider = new GoogleAuthProvider();
         return await signInWithPopup(auth, googleProvider)
     }
+
 
     useEffect(() => { // detectar si ya esta autenticado o no
         const onSubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -57,7 +71,7 @@ export function AuthProvider({ children }){
  	}, []);
 
     return(
-        <AuthContext.Provider value={ { user, signUp, logInWithGoogle, logout, loading, userInfo  } }>
+        <AuthContext.Provider value={ { user, signUp, logInWithGoogle, logout, loading, userInfo, enableNotifications  } }>
             {children}
         </AuthContext.Provider>  
     ) 

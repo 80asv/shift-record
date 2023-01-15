@@ -1,20 +1,23 @@
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { onMessage } from 'firebase/messaging'
 import moment from 'moment/moment'
 import React, { useEffect, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { toast } from 'react-hot-toast'
+import { toast as toasty, ToastContainer } from "react-toastify";
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { deleteTurn, getTurns, updateTurn } from '../../db/firebase'
+import { deleteTurn, getTurns, messaging, updateTurn } from '../../db/firebase'
 import HomeWrapper from '../HomeWrapper/HomeWrapper'
+import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../Loader/Loader'
 import SelectList from '../SelectList/SelectList'
 import Turn from '../Turn/Turn'
 import './Dashboard.scss'
 
 const Dashboard = () => {
-	const { user } = useAuth();
+	const { user, enableNotifications } = useAuth();
 	const [turns, setTurns] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [isFilteredByPlace, setIsFilteredByPlace] = useState(false);
@@ -31,6 +34,11 @@ const Dashboard = () => {
 	const [collectedThisMounth, setCollectedThisMounth] = useState(0);
 
 	useEffect(() => {
+        onMessage(messaging, msg =>  toasty(msg.notification.title))
+    }, [])
+
+	useEffect(() => {
+		enableNotifications();
 		const getTurnsList = async () => {
 			const res = await getTurns(user.uid);
 
@@ -50,7 +58,6 @@ const Dashboard = () => {
 				return [...new Set(dates)];
 			})
 
-			// TODO: PENDIENTE
 			setCollectedThisMounth(()=> {
 				const currentMounth = moment().format('MM');
 				const filterDates = res.filter(turn => moment(turn.dateTurn, 'YYYY-MM-DD').format('MM') === currentMounth);
@@ -80,6 +87,7 @@ const Dashboard = () => {
 			}
 			setLoading(false);
 		}
+		console.log('first');
 		getTurnsList();
 	}, [mounth, /* date, isFiltereByDateTurn */, isFilteredByPlace, place, user.uid, user]); // TODO: REVISAR SI SE ESTA CICLANDO
 
@@ -134,6 +142,7 @@ const Dashboard = () => {
 
   	return (
 		<HomeWrapper>
+				<ToastContainer/>
 				<div className='dashboard__header'>
 					<h2>
 						<p className='dashboard__header-saludo'>Bienvenid@</p>
@@ -149,7 +158,16 @@ const Dashboard = () => {
 						</div>
 
 						<CopyToClipboard text={copyShiftsToClipBoard()}>
-							<button className='card__btn' onClick={() => toast.success('Turnos visibles copiados!')}>
+							<button className='card__btn' onClick={() => toasty.success('Turnos visibles copiados!', {
+								position: "top-right",
+								autoClose: 2000,
+								hideProgressBar: false,
+								closeOnClick: true,
+								pauseOnHover: true,
+								draggable: true,
+								progress: undefined,
+								theme: "colored",
+							})}>
 								<FontAwesomeIcon icon={faBook} className='card__btn-icon'/>
 								<p className='card__btn-label'>Copiar turnos visibles</p>
 							</button>

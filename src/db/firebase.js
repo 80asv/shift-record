@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth'
 import { getFirestore, collection, addDoc, doc, getDoc, query, where, setDoc, deleteDoc, getDocs } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { getMessaging } from 'firebase/messaging';
+import { getAnalytics } from 'firebase/analytics'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,6 +20,8 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const messaging = getMessaging(app);
+export const analytics = getAnalytics(app);
 
 
 // esta funcion se ecarga de buscar si un usuario ya esta dentro de la base de datos o no
