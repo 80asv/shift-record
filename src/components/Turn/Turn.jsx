@@ -37,10 +37,16 @@ const Turn = ({ id, placeToShift, dateTurn, admissionTime, departureTime, onDele
 			return (date1.diff(date2, 'hours') * (-1));
 		})
 		setCPriceShift(() => {
-            const MINIMUM_SALARY = 1300606;
-            const NORMAL = MINIMUM_SALARY/30;
-            const MEDIUM = (MINIMUM_SALARY - (0.3346 * MINIMUM_SALARY))/30;
-            const FESTIVE = (MINIMUM_SALARY + (49.9 * MINIMUM_SALARY))/30;
+
+            //const MINIMUM_SALARY = 1300606;
+
+            const NORMAL = 40000;
+            const MEDIUM = 20000;
+            const FESTIVE = 58000;
+
+            // const NORMAL = MINIMUM_SALARY/30;
+            // const MEDIUM = (MINIMUM_SALARY - (0.3346 * MINIMUM_SALARY))/30;
+            // const FESTIVE = (MINIMUM_SALARY + (0.499 * MINIMUM_SALARY))/30;
 
 			// const NORMAL = 34573;
 			// const MEDIUM = 23073;
