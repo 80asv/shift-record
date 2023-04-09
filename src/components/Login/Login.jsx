@@ -41,15 +41,16 @@ const Login = () => {
 			<div className="login">
 				<div className="login__cnt">
 					<h1 className="login__cnt-title">Regitur</h1>
-					<form className="login__cnt-form" onSubmit={handleSubmit}>
+					<p>Registre, guarde y tenga control de lo que gana con cada turno laboral que realiza</p>
+					{/* <form className="login__cnt-form" onSubmit={handleSubmit}>
 						<div className="login__cnt-form-inputs">
 							<input type="email" name="email" id="email" placeholder="Correo Electrónico" onChange={handleChangeEmail}/>
 							<input type="password" name="password" id="password" placeholder="Contraseña" onChange={handleChangePassword}/>
 							<a href="#">Recordar contraseña</a>
 						</div>
 						<input className="login__cnt-form-btn" type="submit" value="Ingresar" />
-					</form>
-					<span className="login__cnt-acounts">O continuar con</span>
+					</form> */}
+					<span className="login__cnt-acounts">Continuar con</span>
 					<button onClick={handleGoogleLogIn} className='login__cnt-acounts-btn'>
 						<img src="/google-icon.svg" alt="Google" />
 					</button>
