@@ -132,3 +132,17 @@
   background: #2563eb;
   border-color: #1e40af;
 }
+
+@media screen and (max-width: 345px){
+  .b-contain{
+    padding-left: 20px
+  }
+  .b-contain span{
+    font-size: 12px;
+  }
+
+  .b-contain input[type=radio] ~ .b-input{
+    width: 15px;
+    height: 15px;
+  }
+}

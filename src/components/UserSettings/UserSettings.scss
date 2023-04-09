@@ -1,0 +1,218 @@
+.settingscard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 35px;
+    align-content: center;
+    border-radius: 9px;
+    gap: 30px;
+    border: 3px solid #AAA7F2;
+}
+
+.st {
+    &__header {
+        background-color: #ffff;
+        box-sizing: border-box;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 150px;
+        align-content: center;
+        border-bottom: 2px solid #c4c4c4;
+
+        &-btn-save.enable{
+            padding: 11px;
+            background-color: #6f6bf2;
+            border-radius: 9px;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        &-btn-save{
+            padding: 11px;
+            background-color: #f1f1f1;
+            border-radius: 9px;
+            color: #b4b4b4;
+            font-weight: 500;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        &-link{
+            font-size: 27px;
+        }
+        &-span{
+            font-size: 17px;
+        }
+	}
+
+	&__body {
+        background-color: #ffff;
+
+        &-h2{
+            padding: 40px 150px;
+            font-size: 25px;
+            border-bottom: 1px solid #c4c4c4;
+        }
+
+        &-main{
+            padding: 20px 150px;
+            &-main-settings{
+                
+                display: flex;
+                flex-direction: column;
+                margin:auto;
+                gap: 30px;
+                max-width: 1005px;
+
+                &-img{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 20px;
+                    img{
+                        width: 118px;
+                        height: 118px;
+                        border-radius: 50%;
+                    }
+
+                    &-label{
+                        padding: 13px;
+                        border-radius: 9px;
+                        background-color: #5852f2;
+                        font-weight: 600;
+                        border: 3px solid #fff;
+                        cursor: pointer;
+                        font-size: 17px;
+                        color: #ffffff;
+                        transition: all .2s ease-in-out;
+                    }
+
+                    &-label:hover{
+                        background-color: #ffff;
+                        border: 3px solid #5852f2;
+                        color: #5852f2;
+                    }
+
+                    &-input{
+                        display: none;
+                    }
+                }
+
+                &-name, &-username{
+                    label{
+                        font-weight: 600;
+                        font-size: 18px;
+                        line-height: 1.2;
+                    }
+                    input{
+                        width: 293px;
+                        padding: 15px;
+                        border-radius:9px;
+                        border: 2px solid #dedede;
+                        transition: border .2s ease-in-out;
+                    }
+                    input:focus{
+                        border: 2px solid #6f6bf2;
+                    }
+                }
+
+                &-theme, &-notifications{
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
+            &-other-settings{
+
+                display: flex;
+                flex-direction: column;
+                margin:auto;
+                max-width: 1005px;
+                gap: 30px;
+
+                &-shift-values{
+                    > label{
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                    display: flex;
+                    gap: 35px;
+                    div{
+                        display: flex;
+                        align-items: center;
+                        gap: 18px;
+
+                        label{
+                            width: 142px;
+                        }
+
+                        input{
+                            border: 1px solid #dedede;
+                            border-radius: 9px;
+                            padding: 10px;
+                            transition: border .2s ease-in-out;
+                        }
+
+                        input:focus{
+                            border: 2px solid #6f6bf2;
+                        }
+                    }
+
+                    &-update-values{
+                        padding: 13px;
+                        background-color: #5852f2;
+                        border-radius: 9px;
+                        color: #ffffff;
+                        border: 3px solid #ffffff;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all .2s ease-in-out;
+                    }
+
+                    &-update-values:hover{
+                        background-color: #ffff;
+                        border: 3px solid #5852f2;
+                        color: #5852f2;
+                    }
+                }
+
+                &-shift-delete-shifts{
+                    > span{
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+
+                    button{
+                        padding: 13px;
+                        background-color: #FF6666;
+                        border-radius: 9px;
+                        color: #fff;
+                        font-weight: 600;
+                        cursor: pointer;
+                        border: 3px solid #ffffff;
+                        transition: all .2s ease-in-out;
+                    }
+
+                    button:hover{
+                        background-color: #ffffff;
+                        color: #FF6666;
+                        border: 3px solid #FF6666;
+                    }
+                }
+            }
+        }
+	}
+
+	&__h3 {
+        font-size: 25px;
+        padding: 45px 0;
+	}
+
+	
+}

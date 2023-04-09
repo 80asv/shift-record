@@ -1,201 +1,208 @@
 .turn {
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: flex-start;
-    padding: 1.875rem;
-    box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
-    background-color: var(--color-white);
-    overflow: hidden;
+    padding: 27px;
+    background-color: #ffffff;
+    width: 100%;
+    min-height: 300px;
+    max-height: 300px;
+    justify-self: start;
+    gap: 32px;
+    align-self: start;
     align-content: flex-start;
-    flex-wrap: nowrap;
-    gap: 0;
-    border-radius: 1.0625rem;
-    min-height: 21.625rem;
-    min-width: 27.0625rem;
-    flex-grow: 1;
+    border-radius: 9px;
+    border: 1px solid #dedede;
 
     &.turn-edit{
-        background-color: #dbecff;
+        max-height: 300px;
     }
 
-    &__btn{
-        color: var(--color-text);
-        font-size: 1.0625rem;
-    }
-
-    &__footer-edit{
-        display: flex;
-        flex-direction: column;
-        gap: 0.625rem;
-        margin-top: 1.25rem;
-    }
-
-    &__body {
-        box-sizing: border-box;
-        flex-shrink: 0;
-        min-height: 13rem;
-        margin-top: 1.5625rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        background-color: rgba(255, 255, 255, 0);
-        align-content: flex-start;
-    }
-
-    &__body-aditionalinfo {
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        align-content: flex-start;
-        gap: 10px;
-
-        &-price{
-            flex-shrink: 0;
-            white-space: pre;
-            position: relative;
-            font-weight: 600;
-            font-style: normal;
-            font-family: "Albert Sans", sans-serif;
-            color: var(--color-blue);
-            font-size: 1.125rem;
-        }
-
-        &-inforegister{
-            flex-shrink: 0;
-            white-space: pre;
-            position: relative;
-            font-weight: 300;
-            font-style: normal;
-            font-family: "Albert Sans", sans-serif;
-            color: var(--color-text);
-            font-size: 0.9375rem;
-        }
-    }
-
-    &__body-dates, &__body-dates-edit {
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        
-        align-content: flex-start;
-        flex-wrap: nowrap;
-        gap: 0.9375rem;
-
-        p{
-            font-size: 1.125rem;
-        }
-
-        &-edit{
-            p{
-                display: flex;
-                gap: 0.4375rem;
-            }
-        }
-    }
-
-    &__header {
-        flex-shrink: 0;
+    &__header{
         width: 100%;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: space-between;
-        align-items: flex-start;
-        align-content: center;
-        gap: 0.4375rem;
-    }
-
-    &__header-btns {
-        flex-shrink: 0;
-        width: 100%;
+        height: 36px;
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
-        background-color: rgba(255, 255, 255, 0);
+        position: relative;
         align-content: center;
-        gap: 0.625rem;
 
-        .turn__btn{
-            cursor: pointer;
-            box-sizing: border-box;
-            flex-shrink: 0;
-            width: 2.6875rem;
-            height: 2.6875rem;
+        &-btns{
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background-color: #f3f5ff;
-            align-content: center;
-            aspect-ratio: 1 / 1;
-            border-radius: 0.625rem;
-            border: 0.125rem solid rgba(41, 45, 92, 0.12);
-
-            &.confirm{
-                background-color: var(--color-green);
-                color: #4FC440;
-                border: 0.125rem solid #4FC440;
-            }
-            &.cancel{
-                background-color: var(--color-red-cancel);
-                border: 0.125rem solid #C44040;
-                color: #C44040;
-            }
+            gap: 10px;
+            position: absolute;
+            right: 0;
         }
-    }
 
-    &__header-place, &__header-place-edit {
-        flex-shrink: 0;
-        white-space: pre;
-        font-weight: 700;
-        font-style: normal;
-        font-family: "Albert Sans", sans-serif;
-        color: var(--color-text);
-        font-size: 2.1875rem;
+        &-menu{
+            position: absolute;
+            top: -3px;
+            right: 0px;
 
-        &-edit{
-            width: 75%;
-        }
-    }
+            &-btn{
+                font-size: 30px;
+                color: #BDCBDB;
+                cursor: pointer;
+            }
 
-    @media screen and (max-width: 41.25rem) {
-        min-height: auto;
-        min-width: auto;
-        &__header-place, &__header-place-edit{ font-size: 1.5rem; }
-        &__header-btns{
-            gap: 0.3125rem;
-            .turn__btn{
-                width: 2.1875rem;
-                height: 2.1875rem;
-                .icon{
-                    font-size: 0.9375rem;
+            &-options{
+                background-color: #ffffff;
+                border: 1px solid #ccc;
+                display: none;
+                list-style: none;
+                margin: 0;
+                position: absolute;
+                right: 0;
+                top: 100%;
+                z-index: 1;
+                border-radius: 9px;
+
+                &.show{
+                    display: block;
+                }
+
+                li{
+                    cursor: pointer;
+                    padding: 12px 18px;
+                    border-radius: 7px;
+                }
+
+                li:hover{
+                    background: #e9e8ff;
                 }
             }
         }
+
+        p, &-place-edit{
+            flex-shrink: 0;
+            font-weight: 700;
+            color: #000000;
+            font-size: 25px;
+            resize: none;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    &__body{
+        flex-shrink: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        flex: 1 0 0px;
+        align-content: flex-start;
+        gap: 24px;
+
+        &-infoturn, &-dates-edit{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: 17px;
+
+            &-date, &-income, &-turnoff, > div{
+                svg{
+                    width: auto;
+                    color: #A6B4C4;
+                }
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                gap: 10px;
+                color: #5C6A7A;
+                height: 20px;
+            }
+        }
+
+        &-aditionalinfo, &-aditionalinfo-edit{
+            flex-shrink: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            flex: 1 0 0px;
+            align-content: flex-start;
+            gap: 10px;
+
+            &-price, &-edit-priceshift{
+                font-weight: 600;
+                color: #5852f2;
+                font-size: 15px;
+            }
+            &-inforegister{
+                font-weight: 300;
+                color: #5c6a7a;
+                font-size: 12px;
+            }
+
+            &-edit-typeshift-radios{
+                display: flex;
+                gap: 20px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 345px){
+        padding: 15px;
+        gap: 18px;
+        min-height: 228px;
+
+        &__header{
+
+            height: 25px;
+
+            &-menu{
+                top: 0px;
+                &-btn{
+                    font-size: 19px;
+                }
+            }
+
+
+            p, &-place-edit{
+                font-size: 18px;
+            }
+        }
+
         &__body{
-            margin-top: 1.5625rem;
-            min-height: auto;
-            justify-content: flex-start;
-            gap: 2.1875rem;
-        }
-        &__body-dates, &__body-dates-edit{
-            gap: 0.75rem;
-            p{ font-size: 0.875rem; }
-        }
-        &__body-aditionalinfo{
-            &-price{ font-size: 0.875rem; }
-            &-inforegister{ font-size: 0.75rem;}
-        }
-        &__header-place, &__header-place-edit{
-            &-edit{
-                width: 60%;
+            gap: 17px;
+
+            &-infoturn, &-dates-edit{
+                gap: 3px;
+                &-date, &-income, &-turnoff, > div{
+                    font-size: 12px;
+                }
+            }
+    
+            &-aditionalinfo, &-aditionalinfo-edit{
+                flex-shrink: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                flex: 1 0 0px;
+                align-content: flex-start;
+                gap: 10px;
+    
+                &-price, &-edit-priceshift{
+                    font-size: 12px;
+                }
+    
+                &-edit-typeshift-radios{
+                    display: flex;
+                    gap: 10px;
+                }
             }
         }
     }

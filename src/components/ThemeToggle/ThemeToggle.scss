@@ -1,0 +1,22 @@
+.switch {
+    width: 42px;
+    height: 26px;
+    background-color: #dfdfdf;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 50px;
+    padding: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+}
+.switch[data-ison="true"] {
+    justify-content: flex-end;
+    background-color: #6f6bf2;
+}
+.handle {
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 40px;
+}

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewTurn } from '../../db/firebase';
 import { toast, Toaster } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import { motion } from 'framer-motion'
 import 'moment/locale/es';
@@ -129,14 +129,16 @@ const AddTurn = () => {
 	}
 
 	return (
-		<HomeWrapper>
-			
-			<motion.div 
-				className='form'
-				transition={{ duration: .4, ease: 'easeOut'}}
-				initial={{opacity: 0, y: 100}}
-				animate={{opacity: 1, y: 1}}
-			>
+		<>
+		<div className="form">
+			<header className="form__header">
+				<Link to='/dashboard'>
+					<FontAwesomeIcon icon={faArrowLeft}/>
+				</Link>
+				<p>Registro</p>
+				<span></span>
+			</header>
+			<div className='form__bg'>
 				<form className='form__card' onSubmit={handleSubmit}>
 					<h2 className='form__card-title'>Registrar turno</h2>
 					<div className='form__card-container'>
@@ -184,10 +186,19 @@ const AddTurn = () => {
 						</div>
 					</div>
 				</form>
-			</motion.div>
+			</div>
+		</div>
+			{/* <motion.div 
+				className='form'
+				transition={{ duration: .4, ease: 'easeOut'}}
+				initial={{opacity: 0, y: 100}}
+				animate={{opacity: 1, y: 1}}
+			>
+				
+			</motion.div> */}
 			<Toaster/>
 			<ToastContainer/>
-		</HomeWrapper>
+		</>
 	)
 }
 
