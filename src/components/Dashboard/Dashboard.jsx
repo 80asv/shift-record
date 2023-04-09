@@ -46,6 +46,7 @@ const Dashboard = () => {
 	useEffect(() => {
 		enableNotifications();
 		const getTurnsList = async () => {
+			setLoading(true);
 			const res = await getTurns(user.uid);
 
 			/* Listas */
