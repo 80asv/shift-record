@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import HomeWrapper from '../HomeWrapper/HomeWrapper'
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewTurn } from '../../db/firebase';
 import { toast, Toaster } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-import { motion } from 'framer-motion'
 import 'moment/locale/es';
 import RadioBtn from '../RadioBtn/RadioBtn';
 import './AddTurn.scss';
@@ -40,17 +38,9 @@ const AddTurn = () => {
 		setPriceShift(() => {
 			//const MINIMUM_SALARY = 1300606;
 
-			const NORMAL = 40000;
-            const MEDIUM = 20000;
-            const FESTIVE = 58000;
-
-            // const NORMAL = MINIMUM_SALARY/30;
-            // const MEDIUM = (MINIMUM_SALARY - (0.3346 * MINIMUM_SALARY))/30;
-            // const FESTIVE = (MINIMUM_SALARY + (0.499 * MINIMUM_SALARY))/30;
-
-			// const NORMAL = 34573;
-			// const MEDIUM = 23073;
-			// const FESTIVE = 51823;
+			const NORMAL = 70000;
+            const MEDIUM = 35000;
+            const FESTIVE = 70000;
 
 			if(turn.admissionTime === '' || turn.departureTime === ''){
 				return 0;

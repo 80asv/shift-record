@@ -63,10 +63,10 @@ const Turn = ({
 		});
 		setCPriceShift(() => {
 			//const MINIMUM_SALARY = 1300606;
-
-			const NORMAL = 40000;
-			const MEDIUM = 20000;
-			const FESTIVE = 58000;
+			
+			const NORMAL = 70000;
+            const MEDIUM = 35000;
+            const FESTIVE = 70000;
 
 			// const NORMAL = MINIMUM_SALARY/30;
 			// const MEDIUM = (MINIMUM_SALARY - (0.3346 * MINIMUM_SALARY))/30;
